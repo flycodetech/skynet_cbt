@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skynet CBT - Computer Based Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --art: #9b59b6;
+            --science: #3498db;
+            --commercial: #e67e22;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+        }
+
+        .btn-art {
+            background: var(--art);
+        }
+
+        .btn-science {
+            background: var(--science);
+        }
+
+        .btn-commercial {
+            background: var(--commercial);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-card.completed {
+            border-left-color: var(--success);
+            background-color: #f8fff9;
+        }
+
+        .subject-card.current {
+            border-left-color: var(--warning);
+            background-color: #fffbf0;
+        }
+
+        .subject-card.art {
+            border-left-color: var(--art);
+        }
+
+        .subject-card.science {
+            border-left-color: var(--science);
+        }
+
+        .subject-card.commercial {
+            border-left-color: var(--commercial);
+        }
+
+        .subject-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .question-container {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-number {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .option:hover {
+            background: #f5f5f5;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--success);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .result-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .result-score {
+            font-size: 72px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 20px 0;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success) 0% 0%, #eee 0% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .score-circle-inner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .subject-score {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .print-btn {
+            margin-top: 30px;
+        }
+
+        .continue-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .continue-countdown {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 20px 0;
+        }
+
+        .choice-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .department-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .badge-art {
+            background: var(--art);
+        }
+
+        .badge-science {
+            background: var(--science);
+        }
+
+        .badge-commercial {
+            background: var(--commercial);
+        }
+
+        .performance-feedback {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .performance-excellent {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid var(--success);
+        }
+
+        .performance-good {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 5px solid var(--warning);
+        }
+
+        .performance-average {
+            background: #ffeaa7;
+            color: #856404;
+            border-left: 5px solid var(--warning);
+        }
+
+        .performance-poor {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid var(--danger);
+        }
+
+        .score-breakdown {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .choice-buttons {
+                flex-direction: column;
+            }
+
+            .score-circle {
+                width: 120px;
+                height: 120px;
+            }
+
+            .score-circle-inner {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">S</div>
+                <h1 class="app-title">Skynet CBT</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Registration Screen -->
+        <div id="registration-screen" class="card">
+            <h2>Student Registration</h2>
+            <p>Please enter your details to begin the examination</p>
+            
+            <div class="form-group">
+                <label for="student-name">Full Name</label>
+                <input type="text" id="student-name" placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="student-id">Student ID</label>
+                <input type="text" id="student-id" placeholder="Enter your student ID">
+            </div>
+            
+            <div class="form-group">
+                <label for="student-class">Class</label>
+                <select id="student-class">
+                    <option value="">Select your class</option>
+                    <option value="jss1">JSS 1</option>
+                    <option value="jss2">JSS 2</option>
+                    <option value="jss3">JSS 3</option>
+                    <option value="ss1">SS 1</option>
+                    <option value="ss2">SS 2</option>
+                    <option value="ss3">SS 3</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="department-group">
+                <label for="student-department">Department</label>
+                <select id="student-department">
+                    <option value="">Select your department</option>
+                    <option value="science">Science Department</option>
+                    <option value="art">Art Department</option>
+                    <option value="commercial">Commercial Department</option>
+                </select>
+            </div>
+            
+            <button id="start-exam-btn" class="btn">Start Examination</button>
+        </div>
+
+        <!-- Instructions Screen -->
+        <div id="instructions-screen" class="card hidden">
+            <h2>Examination Instructions</h2>
+            <p>Welcome, <span id="instruction-student-name"></span>!</p>
+            <p id="department-info" class="hidden">Department: <span id="department-display"></span></p>
+            <p>Please read the following instructions carefully before starting your exam:</p>
+            
+            <ul>
+                <li>You will be tested on subjects relevant to your class and department.</li>
+                <li>Each subject has 10 questions with a time limit of 1 hour.</li>
+                <li>The exam is divided into 3 sections.</li>
+                <li>You must complete all subjects before your final result can be generated.</li>
+                <li>Your final result will be available for printing 1 hour after completing all subjects.</li>
+                <li>Do not refresh the page or navigate away during the exam.</li>
+                <li>Once you submit an answer, you cannot go back to change it.</li>
+                <li>After each paper, you will see your score and can choose to continue or take a break.</li>
+            </ul>
+            
+            <button id="agree-instructions-btn" class="btn">I Understand, Begin Exam</button>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="card hidden">
+            <h2>Examination Dashboard</h2>
+            <p>Welcome, <span id="student-display-name"></span>! 
+                <span id="dashboard-department" class="hidden">Department: <span id="department-badge"></span></span>
+            </p>
+            
+            <div class="progress-bar">
+                <div class="progress" id="overall-progress"></div>
+            </div>
+            <p id="progress-text">0 of <span id="total-subjects">0</span> subjects completed</p>
+            
+            <div class="dashboard" id="subjects-container">
+                <!-- Subjects will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Exam Screen -->
+        <div id="exam-screen" class="card hidden">
+            <div class="timer" id="exam-timer">60:00</div>
+            
+            <h2 id="current-subject">Subject Name</h2>
+            <div class="progress-bar">
+                <div class="progress" id="question-progress"></div>
+            </div>
+            
+            <div id="questions-container">
+                <!-- Questions will be dynamically added here -->
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-question-btn" class="btn">Previous</button>
+                <button id="next-question-btn" class="btn">Next</button>
+                <button id="submit-exam-btn" class="btn btn-success">Submit Exam</button>
+            </div>
+        </div>
+
+        <!-- Subject Result Screen -->
+        <div id="subject-result-screen" class="card hidden">
+            <div class="result-container">
+                <h2>Subject Result</h2>
+                <p>You have completed <span id="result-subject-name"></span></p>
+                
+                <div class="score-circle">
+                    <div class="score-circle-inner">
+                        <span id="subject-score-percentage">0%</span>
+                    </div>
+                </div>
+                
+                <div id="performance-feedback" class="performance-feedback">
+                    <!-- Performance feedback will be displayed here -->
+                </div>
+                
+                <div class="score-breakdown">
+                    <h3>Score Breakdown</h3>
+                    <div class="breakdown-item">
+                        <span>Total Questions:</span>
+                        <span id="total-questions">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Correct Answers:</span>
+                        <span id="correct-answers">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Wrong Answers:</span>
+                        <span id="wrong-answers">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Score:</span>
+                        <span id="score-display">0/0</span>
+                    </div>
+                </div>
+
+                <div class="progress-info">
+                    <p>Overall Progress: <span id="result-completed-count">0</span> out of <span id="result-total-count">0</span> subjects completed</p>
+                </div>
+                
+                <div class="choice-buttons">
+                    <button id="continue-next-btn" class="btn btn-success">Continue to Next Paper</button>
+                    <button id="take-break-btn" class="btn btn-warning">Take a Break (Continue Later)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Break Screen -->
+        <div id="break-screen" class="card hidden">
+            <div class="result-container">
+                <h2>Examination Paused</h2>
+                <p>Your progress has been saved successfully.</p>
+                <p>You have completed <span id="break-completed-count">0</span> out of <span id="break-total-count">0</span> papers.</p>
+                <p>You can continue your examination tomorrow by logging in with your student details.</p>
+                <button id="logout-btn" class="btn">Logout</button>
+            </div>
+        </div>
+
+        <!-- Final Result Screen -->
+        <div id="final-result-screen" class="card hidden">
+            <div class="result-container">
+                <h2>Examination Completed</h2>
+                <p>Congratulations <span id="final-student-name"></span>! You have completed all subjects.</p>
+                
+                <div class="score-circle">
+                    <div class="score-circle-inner">
+                        <span id="final-score-percentage">0%</span>
+                    </div>
+                </div>
+                
+                <div id="final-performance-feedback" class="performance-feedback">
+                    <!-- Final performance feedback will be displayed here -->
+                </div>
+                
+                <div id="final-subject-results">
+                    <!-- Final subject results will be displayed here -->
+                </div>
+
+                <div id="final-message">
+                    <p>Your official result is being processed and will be ready in 1 hour.</p>
+                    <p>Please visit the admin office to collect your printed result.</p>
+                    <button id="print-final-result-btn" class="btn print-btn">Print Result Summary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Student data
+        let studentData = {
+            name: "",
+            id: "",
+            class: "",
+            department: ""
+        };
+
+        // Exam data
+        let examData = {
+            currentSubject: 0,
+            currentQuestion: 0,
+            answers: {},
+            completedSubjects: [],
+            subjectScores: {},
+            startTime: null,
+            timer: null
+        };
+
+        // Departments for SSS classes
+        const departments = {
+            science: {
+                name: "Science Department",
+                color: "science",
+                subjects: [
+                    "Mathematics", "English Language", "Physics", "Chemistry", 
+                    "Biology", "Further Mathematics", "Agricultural Science", "Geography",
+                    "Technical Drawing", "Computer Science", "Digital Technology"
+                ]
+            },
+            art: {
+                name: "Art Department",
+                color: "art",
+                subjects: [
+                    "Mathematics", "English Language", "Literature in English", "Government", 
+                    "History", "Christian Religious Studies", "Islamic Studies", "Geography",
+                    "Economics", "Fine Arts", "Music"
+                ]
+            },
+            commercial: {
+                name: "Commercial Department",
+                color: "commercial",
+                subjects: [
+                    "Mathematics", "English Language", "Economics", "Commerce", 
+                    "Accounting", "Business Studies", "Office Practice", "Government",
+                    "Geography", "Financial Accounting", "Digital Technology"
+                ]
+            }
+        };
+
+        // JSS subjects (common for all)
+        const jssSubjects = [
+            "Mathematics", "English Language", "Basic Science", "Social Studies", 
+            "Business Studies", "Computer Studies", "Creative Arts", "Physical Education",
+            "French", "Home Economics", "Civic Education"
+        ];
+
+        // Questions for all subjects
+        const subjectQuestions = {
+            "Mathematics": [
+                { id: 1, question: "What is the value of π (pi) to two decimal places?", options: { A: "3.14", B: "3.16", C: "3.12", D: "3.18" }, correctAnswer: "A" },
+                { id: 2, question: "Solve for x: 2x + 5 = 15", options: { A: "5", B: "10", C: "7.5", D: "8" }, correctAnswer: "A" },
+                { id: 3, question: "What is the area of a triangle with base 6cm and height 4cm?", options: { A: "10cm²", B: "12cm²", C: "24cm²", D: "18cm²" }, correctAnswer: "B" },
+                { id: 4, question: "If a = 3 and b = 4, what is the value of a² + b²?", options: { A: "7", B: "12", C: "25", D: "5" }, correctAnswer: "C" },
+                { id: 5, question: "What is 25% of 200?", options: { A: "25", B: "50", C: "75", D: "100" }, correctAnswer: "B" },
+                { id: 6, question: "Simplify: 3(x + 4) - 2(x - 1)", options: { A: "x + 14", B: "x + 10", C: "5x + 10", D: "5x + 14" }, correctAnswer: "A" },
+                { id: 7, question: "What is the next number in the sequence: 2, 4, 8, 16, ...?", options: { A: "24", B: "32", C: "20", D: "18" }, correctAnswer: "B" },
+                { id: 8, question: "Calculate: 7 × 8 ÷ 4 + 3", options: { A: "17", B: "14", C: "20", D: "19" }, correctAnswer: "A" },
+                { id: 9, question: "What is the square root of 144?", options: { A: "11", B: "12", C: "13", D: "14" }, correctAnswer: "B" },
+                { id: 10, question: "If a car travels 60km in 1 hour, how far will it travel in 2.5 hours?", options: { A: "120km", B: "150km", C: "180km", D: "200km" }, correctAnswer: "B" }
+            ],
+            "English Language": [
+                { id: 1, question: "Which of these is a noun?", options: { A: "run", B: "beautiful", C: "quickly", D: "teacher" }, correctAnswer: "D" },
+                { id: 2, question: "Choose the correct spelling:", options: { A: "acomodate", B: "acommodate", C: "accommodate", D: "acommodatte" }, correctAnswer: "C" },
+                { id: 3, question: "What is the past tense of 'go'?", options: { A: "goed", B: "went", C: "gone", D: "going" }, correctAnswer: "B" },
+                { id: 4, question: "Which sentence is in passive voice?", options: { A: "The cat chased the mouse", B: "The mouse was chased by the cat", C: "The cat is chasing the mouse", D: "The cat will chase the mouse" }, correctAnswer: "B" },
+                { id: 5, question: "What is the synonym of 'happy'?", options: { A: "sad", B: "joyful", C: "angry", D: "tired" }, correctAnswer: "B" },
+                { id: 6, question: "Identify the adverb: 'She sang beautifully'", options: { A: "She", B: "sang", C: "beautifully", D: "all of the above" }, correctAnswer: "C" },
+                { id: 7, question: "Which is a compound sentence?", options: { A: "I like apples", B: "I like apples and oranges", C: "I like apples because they are sweet", D: "Apples are fruits" }, correctAnswer: "B" },
+                { id: 8, question: "What is the plural of 'child'?", options: { A: "childs", B: "childes", C: "children", D: "childern" }, correctAnswer: "C" },
+                { id: 9, question: "Choose the correct punctuation: 'Whats your name_'", options: { A: "?", B: "!", C: ".", D: "," }, correctAnswer: "A" },
+                { id: 10, question: "Which word is an adjective?", options: { A: "run", B: "blue", C: "slowly", D: "they" }, correctAnswer: "B" }
+            ],
+            "Digital Technology": [
+                { id: 1, question: "The foundation of all digital devices is based on a numbering system called the ________.", options: { A: "Decimal system", B: "Binary system", C: "Hexadecimal system", D: "Octal system" }, correctAnswer: "B" },
+                { id: 2, question: "Which of the following is NOT a type of logic gate?", options: { A: "AND", B: "OR", C: "NOT", D: "FLOW" }, correctAnswer: "D" },
+                { id: 3, question: "A single binary digit (0 or 1) is known as a ________.", options: { A: "Byte", B: "Nibble", C: "Bit", D: "Word" }, correctAnswer: "C" },
+                { id: 4, question: "What is the decimal equivalent of the binary number 1101?", options: { A: "12", B: "13", C: "14", D: "15" }, correctAnswer: "B" },
+                { id: 5, question: "The central processing unit (CPU) is often referred to as the ________ of the computer.", options: { A: "Heart", B: "Brain", C: "Hand", D: "Memory" }, correctAnswer: "B" },
+                { id: 6, question: "Which component of the CPU is responsible for performing arithmetic and logical operations?", options: { A: "Control Unit", B: "Cache", C: "Arithmetic Logic Unit (ALU)", D: "Register" }, correctAnswer: "C" },
+                { id: 7, question: "A logic gate that gives a HIGH output only when all its inputs are HIGH is the ________ gate.", options: { A: "OR", B: "NOT", C: "NAND", D: "AND" }, correctAnswer: "D" },
+                { id: 8, question: "Converting data into a form that cannot be easily understood by unauthorized people is known as ________.", options: { A: "Compression", B: "Encryption", C: "Decryption", D: "Transmission" }, correctAnswer: "B" },
+                { id: 9, question: "Which of these is an example of an operating system?", options: { A: "Microsoft Word", B: "Google Chrome", C: "Windows 11", D: "Adobe Photoshop" }, correctAnswer: "C" },
+                { id: 10, question: "The binary addition of 1 + 1 gives ________.", options: { A: "0 with a carry of 1", B: "1", C: "10", D: "2" }, correctAnswer: "A" }
+            ]
+            // Additional subjects would continue here...
+        };
+
+        // For subjects not defined above, use a default set of questions
+        function getQuestionsForSubject(subjectName) {
+            if (subjectQuestions[subjectName]) {
+                return subjectQuestions[subjectName];
+            }
+            // Default questions for any subject not specifically defined
+            return [
+                { id: 1, question: `What is the main focus of ${subjectName}?`, options: { A: "Option A", B: "Option B", C: "Option C", D: "Option D" }, correctAnswer: "A" },
+                { id: 2, question: `Which concept is fundamental to ${subjectName}?`, options: { A: "Concept A", B: "Concept B", C: "Concept C", D: "Concept D" }, correctAnswer: "B" },
+                { id: 3, question: `What is the primary method used in ${subjectName}?`, options: { A: "Method A", B: "Method B", C: "Method C", D: "Method D" }, correctAnswer: "C" },
+                { id: 4, question: `Which of these is a key principle in ${subjectName}?`, options: { A: "Principle A", B: "Principle B", C: "Principle C", D: "Principle D" }, correctAnswer: "D" },
+                { id: 5, question: `What is the historical significance of ${subjectName}?`, options: { A: "Significance A", B: "Significance B", C: "Significance C", D: "Significance D" }, correctAnswer: "A" },
+                { id: 6, question: `Which tool is commonly used in ${subjectName}?`, options: { A: "Tool A", B: "Tool B", C: "Tool C", D: "Tool D" }, correctAnswer: "B" },
+                { id: 7, question: `What is the modern application of ${subjectName}?`, options: { A: "Application A", B: "Application B", C: "Application C", D: "Application D" }, correctAnswer: "C" },
+                { id: 8, question: `Which theory is associated with ${subjectName}?`, options: { A: "Theory A", B: "Theory B", C: "Theory C", D: "Theory D" }, correctAnswer: "D" },
+                { id: 9, question: `What is the main challenge in ${subjectName}?`, options: { A: "Challenge A", B: "Challenge B", C: "Challenge C", D: "Challenge D" }, correctAnswer: "A" },
+                { id: 10, question: `Which skill is most important for ${subjectName}?`, options: { A: "Skill A", B: "Skill B", C: "Skill C", D: "Skill D" }, correctAnswer: "B" }
+            ];
+        }
+
+        // Get subjects based on class and department
+        function getSubjectsForStudent() {
+            const studentClass = studentData.class;
+            
+            if (studentClass.startsWith('jss')) {
+                return jssSubjects;
+            } else if (studentClass.startsWith('ss') && studentData.department) {
+                return departments[studentData.department].subjects;
+            }
+            return jssSubjects; // fallback
+        }
+
+        // Calculate score for a subject
+        function calculateSubjectScore(subjectIndex) {
+            const studentSubjects = getSubjectsForStudent();
+            const subjectName = studentSubjects[subjectIndex];
+            const questions = getQuestionsForSubject(subjectName);
+            
+            let correctCount = 0;
+            let totalQuestions = questions.length;
+            
+            questions.forEach(question => {
+                const userAnswer = examData.answers[`${subjectIndex}-${question.id}`];
+                if (userAnswer === question.correctAnswer) {
+                    correctCount++;
+                }
+            });
+            
+            const score = (correctCount / totalQuestions) * 100;
+            return {
+                score: Math.round(score),
+                correctCount: correctCount,
+                totalQuestions: totalQuestions,
+                wrongCount: totalQuestions - correctCount
+            };
+        }
+
+        // Get performance feedback based on score
+        function getPerformanceFeedback(score) {
+            if (score >= 90) {
+                return {
+                    text: "Excellent! Outstanding performance!",
+                    class: "performance-excellent"
+                };
+            } else if (score >= 75) {
+                return {
+                    text: "Very Good! Keep up the good work!",
+                    class: "performance-excellent"
+                };
+            } else if (score >= 60) {
+                return {
+                    text: "Good performance! You're doing well.",
+                    class: "performance-good"
+                };
+            } else if (score >= 50) {
+                return {
+                    text: "Average performance. Keep practicing!",
+                    class: "performance-average"
+                };
+            } else {
+                return {
+                    text: "Needs improvement. Review the topics and try again.",
+                    class: "performance-poor"
+                };
+            }
+        }
+
+        // DOM Elements
+        const registrationScreen = document.getElementById('registration-screen');
+        const instructionsScreen = document.getElementById('instructions-screen');
+        const dashboardScreen = document.getElementById('dashboard-screen');
+        const examScreen = document.getElementById('exam-screen');
+        const subjectResultScreen = document.getElementById('subject-result-screen');
+        const breakScreen = document.getElementById('break-screen');
+        const finalResultScreen = document.getElementById('final-result-screen');
+        const departmentGroup = document.getElementById('department-group');
+        
+        const startExamBtn = document.getElementById('start-exam-btn');
+        const agreeInstructionsBtn = document.getElementById('agree-instructions-btn');
+        const prevQuestionBtn = document.getElementById('prev-question-btn');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const submitExamBtn = document.getElementById('submit-exam-btn');
+        const continueNextBtn = document.getElementById('continue-next-btn');
+        const takeBreakBtn = document.getElementById('take-break-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const printFinalResultBtn = document.getElementById('print-final-result-btn');
+        
+        const studentNameInput = document.getElementById('student-name');
+        const studentIdInput = document.getElementById('student-id');
+        const studentClassSelect = document.getElementById('student-class');
+        const studentDepartmentSelect = document.getElementById('student-department');
+        const studentDisplayName = document.getElementById('student-display-name');
+        const instructionStudentName = document.getElementById('instruction-student-name');
+        const finalStudentName = document.getElementById('final-student-name');
+        const resultSubjectName = document.getElementById('result-subject-name');
+        const departmentInfo = document.getElementById('department-info');
+        const departmentDisplay = document.getElementById('department-display');
+        const dashboardDepartment = document.getElementById('dashboard-department');
+        const departmentBadge = document.getElementById('department-badge');
+        
+        const subjectsContainer = document.getElementById('subjects-container');
+        const questionsContainer = document.getElementById('questions-container');
+        const currentSubjectElement = document.getElementById('current-subject');
+        const examTimer = document.getElementById('exam-timer');
+        const questionProgress = document.getElementById('question-progress');
+        const overallProgress = document.getElementById('overall-progress');
+        const progressText = document.getElementById('progress-text');
+        const totalSubjects = document.getElementById('total-subjects');
+        const resultCompletedCount = document.getElementById('result-completed-count');
+        const resultTotalCount = document.getElementById('result-total-count');
+        const breakCompletedCount = document.getElementById('break-completed-count');
+        const breakTotalCount = document.getElementById('break-total-count');
+        const subjectScorePercentage = document.getElementById('subject-score-percentage');
+        const performanceFeedback = document.getElementById('performance-feedback');
+        const totalQuestions = document.getElementById('total-questions');
+        const correctAnswers = document.getElementById('correct-answers');
+        const wrongAnswers = document.getElementById('wrong-answers');
+        const scoreDisplay = document.getElementById('score-display');
+        const finalScorePercentage = document.getElementById('final-score-percentage');
+        const finalPerformanceFeedback = document.getElementById('final-performance-feedback');
+        const finalSubjectResults = document.getElementById('final-subject-results');
+
+        // Event Listeners
+        startExamBtn.addEventListener('click', startExam);
+        studentClassSelect.addEventListener('change', toggleDepartmentField);
+        agreeInstructionsBtn.addEventListener('click', showDashboard);
+        prevQuestionBtn.addEventListener('click', showPreviousQuestion);
+        nextQuestionBtn.addEventListener('click', showNextQuestion);
+        submitExamBtn.addEventListener('click', submitExam);
+        continueNextBtn.addEventListener('click', continueToNextSubject);
+        takeBreakBtn.addEventListener('click', takeBreak);
+        logoutBtn.addEventListener('click', logout);
+        printFinalResultBtn.addEventListener('click', printFinalResult);
+
+        // Functions
+        function toggleDepartmentField() {
+            const studentClass = studentClassSelect.value;
+            if (studentClass.startsWith('ss')) {
+                departmentGroup.classList.remove('hidden');
+            } else {
+                departmentGroup.classList.add('hidden');
+                studentDepartmentSelect.value = "";
+            }
+        }
+
+        function startExam() {
+            const name = studentNameInput.value.trim();
+            const id = studentIdInput.value.trim();
+            const studentClass = studentClassSelect.value;
+            const department = studentDepartmentSelect.value;
+            
+            if (!name || !id || !studentClass) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (studentClass.startsWith('ss') && !department) {
+                alert('Please select your department');
+                return;
+            }
+            
+            studentData = {
+                name,
+                id,
+                class: studentClass,
+                department: department
+            };
+            
+            // Check for existing progress
+            const savedProgress = localStorage.getItem(`skynet_cbt_${id}`);
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                examData.completedSubjects = progress.completedSubjects || [];
+                examData.answers = progress.answers || {};
+                examData.subjectScores = progress.subjectScores || {};
+                alert(`Welcome back! You have completed ${examData.completedSubjects.length} subjects. Continuing from where you left off.`);
+            }
+            
+            studentDisplayName.textContent = name;
+            instructionStudentName.textContent = name;
+            finalStudentName.textContent = name;
+            
+            registrationScreen.classList.add('hidden');
+            instructionsScreen.classList.remove('hidden');
+            
+            // Show department info if applicable
+            if (studentClass.startsWith('ss') && department) {
+                departmentInfo.classList.remove('hidden');
+                departmentDisplay.textContent = departments[department].name;
+            }
+        }
+
+        function showDashboard() {
+            instructionsScreen.classList.add('hidden');
+            dashboardScreen.classList.remove('hidden');
+            updateDashboard();
+        }
+
+        function updateDashboard() {
+            // Clear previous subjects
+            subjectsContainer.innerHTML = '';
+            
+            // Get subjects for the selected class and department
+            const studentSubjects = getSubjectsForStudent();
+            totalSubjects.textContent = studentSubjects.length;
+            
+            // Update department display
+            if (studentData.class.startsWith('ss') && studentData.department) {
+                dashboardDepartment.classList.remove('hidden');
+                const dept = departments[studentData.department];
+                departmentBadge.textContent = dept.name;
+                departmentBadge.className = `department-badge badge-${dept.color}`;
+            }
+            
+            // Update overall progress
+            const progressPercentage = (examData.completedSubjects.length / studentSubjects.length) * 100;
+            overallProgress.style.width = `${progressPercentage}%`;
+            progressText.textContent = `${examData.completedSubjects.length} of ${studentSubjects.length} subjects completed`;
+            
+            // Create subject cards
+            studentSubjects.forEach((subject, index) => {
+                const subjectCard = document.createElement('div');
+                subjectCard.className = 'subject-card';
+                
+                // Add department color for SSS
+                if (studentData.class.startsWith('ss') && studentData.department) {
+                    subjectCard.classList.add(departments[studentData.department].color);
+                }
+                
+                if (examData.completedSubjects.includes(subject)) {
+                    subjectCard.classList.add('completed');
+                    // Show score on completed subjects
+                    const score = examData.subjectScores[subject] || 0;
+                    subjectCard.innerHTML = `
+                        <div class="subject-icon">📚</div>
+                        <h3>${subject}</h3>
+                        <p>Completed - Score: ${score}%</p>
+                    `;
+                } else if (index === getNextSubjectIndex()) {
+                    subjectCard.classList.add('current');
+                    subjectCard.innerHTML = `
+                        <div class="subject-icon">📚</div>
+                        <h3>${subject}</h3>
+                        <p>Ready to Start</p>
+                    `;
+                } else {
+                    subjectCard.innerHTML = `
+                        <div class="subject-icon">📚</div>
+                        <h3>${subject}</h3>
+                        <p>Not Started</p>
+                    `;
+                }
+                
+                subjectCard.addEventListener('click', () => startSubjectExam(index));
+                subjectsContainer.appendChild(subjectCard);
+            });
+        }
+
+        function getNextSubjectIndex() {
+            const studentSubjects = getSubjectsForStudent();
+            for (let i = 0; i < studentSubjects.length; i++) {
+                if (!examData.completedSubjects.includes(studentSubjects[i])) {
+                    return i;
+                }
+            }
+            return studentSubjects.length - 1;
+        }
+
+        function startSubjectExam(subjectIndex) {
+            examData.currentSubject = subjectIndex;
+            examData.currentQuestion = 0;
+            examData.startTime = new Date();
+            
+            const studentSubjects = getSubjectsForStudent();
+            currentSubjectElement.textContent = studentSubjects[subjectIndex];
+            
+            dashboardScreen.classList.add('hidden');
+            examScreen.classList.remove('hidden');
+            
+            // Start the timer (1 hour)
+            startTimer(60 * 60);
+            
+            // Load questions for the subject
+            loadQuestions();
+        }
+
+        function loadQuestions() {
+            const studentSubjects = getSubjectsForStudent();
+            const currentSubject = studentSubjects[examData.currentSubject];
+            const questions = getQuestionsForSubject(currentSubject);
+            
+            // Clear previous questions
+            questionsContainer.innerHTML = '';
+            
+            // Create question elements
+            questions.forEach((q, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question-container';
+                questionElement.id = `question-${index}`;
+                
+                if (index !== examData.currentQuestion) {
+                    questionElement.classList.add('hidden');
+                }
+                
+                let optionsHTML = '';
+                for (const [key, value] of Object.entries(q.options)) {
+                    const isChecked = examData.answers[`${examData.currentSubject}-${q.id}`] === key ? 'checked' : '';
+                    optionsHTML += `
+                        <div class="option">
+                            <input type="radio" id="q${q.id}-${key}" name="q${q.id}" value="${key}" ${isChecked}>
+                            <label for="q${q.id}-${key}">${key}. ${value}</label>
+                        </div>
+                    `;
+                }
+                
+                questionElement.innerHTML = `
+                    <div class="question-number">Question ${index + 1}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">${optionsHTML}</div>
+                `;
+                
+                questionsContainer.appendChild(questionElement);
+                
+                // Add event listeners to options
+                const optionInputs = questionElement.querySelectorAll('input[type="radio"]');
+                optionInputs.forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        examData.answers[`${examData.currentSubject}-${q.id}`] = e.target.value;
+                    });
+                });
+            });
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+
+        function showPreviousQuestion() {
+            if (examData.currentQuestion > 0) {
+                document.getElementById(`question-${examData.currentQuestion}`).classList.add('hidden');
+                examData.currentQuestion--;
+                document.getElementById(`question-${examData.currentQuestion}`).classList.remove('hidden');
+                updateProgressBar();
+            }
+        }
+
+        function showNextQuestion() {
+            const studentSubjects = getSubjectsForStudent();
+            const currentSubject = studentSubjects[examData.currentSubject];
+            const questions = getQuestionsForSubject(currentSubject);
+            
+            if (examData.currentQuestion < questions.length - 1) {
+                document.getElementById(`question-${examData.currentQuestion}`).classList.add('hidden');
+                examData.currentQuestion++;
+                document.getElementById(`question-${examData.currentQuestion}`).classList.remove('hidden');
+                updateProgressBar();
+            }
+        }
+
+        function updateProgressBar() {
+            const studentSubjects = getSubjectsForStudent();
+            const currentSubject = studentSubjects[examData.currentSubject];
+            const questions = getQuestionsForSubject(currentSubject);
+            const progress = ((examData.currentQuestion + 1) / questions.length) * 100;
+            questionProgress.style.width = `${progress}%`;
+        }
+
+        function startTimer(duration) {
+            let timer = duration;
+            clearInterval(examData.timer);
+            
+            examData.timer = setInterval(() => {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                
+                examTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (--timer < 0) {
+                    clearInterval(examData.timer);
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function submitExam() {
+            clearInterval(examData.timer);
+            
+            const studentSubjects = getSubjectsForStudent();
+            const currentSubject = studentSubjects[examData.currentSubject];
+            
+            // Calculate score
+            const scoreResult = calculateSubjectScore(examData.currentSubject);
+            
+            // Store the score
+            examData.subjectScores[currentSubject] = scoreResult.score;
+            
+            if (!examData.completedSubjects.includes(currentSubject)) {
+                examData.completedSubjects.push(currentSubject);
+            }
+            
+            // Save progress to localStorage
+            saveProgress();
+            
+            // Show subject result screen
+            showSubjectResult(currentSubject, scoreResult);
+        }
+
+        function showSubjectResult(subjectName, scoreResult) {
+            examScreen.classList.add('hidden');
+            subjectResultScreen.classList.remove('hidden');
+            
+            const studentSubjects = getSubjectsForStudent();
+            
+            // Update result display
+            resultSubjectName.textContent = subjectName;
+            subjectScorePercentage.textContent = `${scoreResult.score}%`;
+            totalQuestions.textContent = scoreResult.totalQuestions;
+            correctAnswers.textContent = scoreResult.correctCount;
+            wrongAnswers.textContent = scoreResult.wrongCount;
+            scoreDisplay.textContent = `${scoreResult.correctCount}/${scoreResult.totalQuestions}`;
+            
+            // Update progress counts
+            resultCompletedCount.textContent = examData.completedSubjects.length;
+            resultTotalCount.textContent = studentSubjects.length;
+            
+            // Update score circle
+            const scoreCircle = document.querySelector('.score-circle');
+            scoreCircle.style.background = `conic-gradient(var(--success) 0% ${scoreResult.score}%, #eee ${scoreResult.score}% 100%)`;
+            
+            // Show performance feedback
+            const feedback = getPerformanceFeedback(scoreResult.score);
+            performanceFeedback.textContent = feedback.text;
+            performanceFeedback.className = `performance-feedback ${feedback.class}`;
+        }
+
+        function saveProgress() {
+            const progressData = {
+                completedSubjects: examData.completedSubjects,
+                answers: examData.answers,
+                subjectScores: examData.subjectScores,
+                studentData: studentData,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem(`skynet_cbt_${studentData.id}`, JSON.stringify(progressData));
+        }
+
+        function continueToNextSubject() {
+            subjectResultScreen.classList.add('hidden');
+            
+            const studentSubjects = getSubjectsForStudent();
+            
+            // Check if all subjects are completed
+            if (examData.completedSubjects.length === studentSubjects.length) {
+                showFinalResult();
+            } else {
+                // Automatically start the next subject
+                const nextSubjectIndex = getNextSubjectIndex();
+                startSubjectExam(nextSubjectIndex);
+            }
+        }
+
+        function takeBreak() {
+            subjectResultScreen.classList.add('hidden');
+            breakScreen.classList.remove('hidden');
+            
+            const studentSubjects = getSubjectsForStudent();
+            breakCompletedCount.textContent = examData.completedSubjects.length;
+            breakTotalCount.textContent = studentSubjects.length;
+        }
+
+        function logout() {
+            // Clear temporary data but keep progress in localStorage
+            examData.currentSubject = 0;
+            examData.currentQuestion = 0;
+            examData.startTime = null;
+            
+            breakScreen.classList.add('hidden');
+            registrationScreen.classList.remove('hidden');
+            
+            // Reset form
+            studentNameInput.value = "";
+            studentIdInput.value = "";
+            studentClassSelect.value = "";
+            studentDepartmentSelect.value = "";
+            departmentGroup.classList.add('hidden');
+        }
+
+        function showFinalResult() {
+            subjectResultScreen.classList.add('hidden');
+            finalResultScreen.classList.remove('hidden');
+            
+            const studentSubjects = getSubjectsForStudent();
+            
+            // Calculate final average score
+            let totalScore = 0;
+            let subjectCount = 0;
+            
+            finalSubjectResults.innerHTML = '';
+            
+            studentSubjects.forEach(subject => {
+                const score = examData.subjectScores[subject] || 0;
+                totalScore += score;
+                subjectCount++;
+                
+                const subjectScoreElement = document.createElement('div');
+                subjectScoreElement.className = 'subject-score';
+                subjectScoreElement.innerHTML = `
+                    <span>${subject}</span>
+                    <span>${score}%</span>
+                `;
+                finalSubjectResults.appendChild(subjectScoreElement);
+            });
+            
+            const averageScore = Math.round(totalScore / subjectCount);
+            finalScorePercentage.textContent = `${averageScore}%`;
+            
+            // Update final score circle
+            const finalScoreCircle = finalResultScreen.querySelector('.score-circle');
+            finalScoreCircle.style.background = `conic-gradient(var(--success) 0% ${averageScore}%, #eee ${averageScore}% 100%)`;
+            
+            // Show final performance feedback
+            const feedback = getPerformanceFeedback(averageScore);
+            finalPerformanceFeedback.textContent = feedback.text;
+            finalPerformanceFeedback.className = `performance-feedback ${feedback.class}`;
+            
+            // Clear progress after completion
+            localStorage.removeItem(`skynet_cbt_${studentData.id}`);
+        }
+
+        function printFinalResult() {
+            window.print();
+        }
+
+        // Initialize the app
+        function init() {
+            // For demo purposes, pre-fill form
+            studentNameInput.value = "John Doe";
+            studentIdInput.value = "STU2025001";
+            studentClassSelect.value = "ss3";
+            toggleDepartmentField();
+            studentDepartmentSelect.value = "science";
+        }
+
+        // Run initialization when page loads
+        window.onload = init;
+    </script>
+</body>
+</html>

@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBT Examination System - Digital Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .btn-success {
+            background: #2ecc71;
+        }
+
+        .btn-success:hover {
+            background: #27ae60;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+        }
+
+        .btn-warning:hover {
+            background: #d35400;
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .question-container {
+            display: none;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-number {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .question-text {
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .option input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .result-container {
+            display: none;
+            text-align: center;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .result-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #3498db;
+            margin: 20px 0;
+        }
+
+        .pass {
+            color: #2ecc71;
+        }
+
+        .fail {
+            color: #e74c3c;
+        }
+
+        .result-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .result-details p {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #3498db;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .waiting-container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .timer {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CBT Examination System</h1>
+            <p class="subtitle">Digital Technology - SS1 to SS3</p>
+        </header>
+
+        <!-- Student Information Form -->
+        <div id="student-info" class="card">
+            <h2>Student Information</h2>
+            <form id="student-form">
+                <div class="form-group">
+                    <label for="student-name">Full Name</label>
+                    <input type="text" id="student-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-id">Student ID</label>
+                    <input type="text" id="student-id" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-class">Class</label>
+                    <select id="student-class" required>
+                        <option value="">Select Class</option>
+                        <option value="SS1">SS1</option>
+                        <option value="SS2">SS2</option>
+                        <option value="SS3">SS3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="student-department">Department</label>
+                    <select id="student-department" required>
+                        <option value="">Select Department</option>
+                        <option value="Science">Science</option>
+                        <option value="Art">Art</option>
+                        <option value="Commercial">Commercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exam-subject">Select Subject</label>
+                    <select id="exam-subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="digital-tech">Digital Technology</option>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="english">English Language</option>
+                        <option value="physics">Physics</option>
+                        <option value="economics">Economics</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Start Exam</button>
+            </form>
+        </div>
+
+        <!-- Timer -->
+        <div id="timer" class="timer hidden">40:00</div>
+
+        <!-- Exam Interface -->
+        <div id="exam-interface" class="card question-container">
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+            <div id="questions-container"></div>
+            <div class="navigation">
+                <button id="prev-btn" class="btn btn-warning">Previous</button>
+                <button id="next-btn" class="btn">Next</button>
+                <button id="submit-btn" class="btn btn-success">Submit Exam</button>
+            </div>
+        </div>
+
+        <!-- Waiting for Results -->
+        <div id="waiting-container" class="card waiting-container hidden">
+            <div class="spinner"></div>
+            <h2>Processing Your Results</h2>
+            <p>Your exam has been submitted. Results will be available in <span id="countdown">03:00</span> minutes.</p>
+            <p>Please wait while we process your answers...</p>
+        </div>
+
+        <!-- Result Container -->
+        <div id="result-container" class="result-container">
+            <div class="result-card">
+                <h2 class="result-title">Examination Result</h2>
+                <div id="result-alert" class="alert"></div>
+                <div class="score" id="score-display">0/40</div>
+                <div class="result-details">
+                    <p><strong>Name:</strong> <span id="result-name"></span></p>
+                    <p><strong>Student ID:</strong> <span id="result-id"></span></p>
+                    <p><strong>Class:</strong> <span id="result-class"></span></p>
+                    <p><strong>Department:</strong> <span id="result-department"></span></p>
+                    <p><strong>Subject:</strong> <span id="result-subject"></span></p>
+                    <p><strong>Time Spent:</strong> <span id="result-time"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <button id="print-btn" class="btn">Print Result</button>
+                    <button id="excel-btn" class="btn btn-success">Save to Excel</button>
+                    <button id="restart-btn" class="btn btn-warning">Take Another Test</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const studentInfo = document.getElementById('student-info');
+        const examInterface = document.getElementById('exam-interface');
+        const waitingContainer = document.getElementById('waiting-container');
+        const resultContainer = document.getElementById('result-container');
+        const studentForm = document.getElementById('student-form');
+        const questionsContainer = document.getElementById('questions-container');
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultAlert = document.getElementById('result-alert');
+        const scoreDisplay = document.getElementById('score-display');
+        const resultName = document.getElementById('result-name');
+        const resultId = document.getElementById('result-id');
+        const resultClass = document.getElementById('result-class');
+        const resultDepartment = document.getElementById('result-department');
+        const resultSubject = document.getElementById('result-subject');
+        const resultTime = document.getElementById('result-time');
+        const printBtn = document.getElementById('print-btn');
+        const excelBtn = document.getElementById('excel-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const countdownElement = document.getElementById('countdown');
+
+        // Exam variables
+        let currentQuestion = 0;
+        let answers = [];
+        let timer;
+        let timeLeft = 40 * 60; // 40 minutes in seconds
+        let studentData = {};
+        let examData = [];
+        let resultTimer;
+        let resultWaitTime = 3 * 60; // 3 minutes in seconds (changed from 10 to 3 minutes)
+
+        // Questions database (Digital Technology focus with 40 questions)
+        const questions = {
+            'digital-tech': [
+                // History of Computers (SS1)
+                {
+                    question: "Who is considered the father of computers?",
+                    options: [
+                        "Charles Babbage",
+                        "Alan Turing",
+                        "Bill Gates",
+                        "Steve Jobs"
+                    ],
+                    correct: 0,
+                    topic: "History of Computers",
+                    class: "SS1"
+                },
+                {
+                    question: "The first generation of computers used which technology?",
+                    options: [
+                        "Transistors",
+                        "Vacuum Tubes",
+                        "Integrated Circuits",
+                        "Microprocessors"
+                    ],
+                    correct: 1,
+                    topic: "History of Computers",
+                    class: "SS1"
+                },
+                {
+                    question: "Which was the first electronic general-purpose computer?",
+                    options: [
+                        "ENIAC",
+                        "UNIVAC",
+                        "IBM PC",
+                        "Apple II"
+                    ],
+                    correct: 0,
+                    topic: "History of Computers",
+                    class: "SS1"
+                },
+                {
+                    question: "The period from 1971-present is known as the ______ generation of computers.",
+                    options: [
+                        "Second",
+                        "Third",
+                        "Fourth",
+                        "Fifth"
+                    ],
+                    correct: 2,
+                    topic: "History of Computers",
+                    class: "SS1"
+                },
+                
+                // Computer Hardware (SS1)
+                {
+                    question: "Which component is considered the brain of the computer?",
+                    options: [
+                        "RAM",
+                        "CPU",
+                        "Hard Drive",
+                        "Motherboard"
+                    ],
+                    correct: 1,
+                    topic: "Hardware",
+                    class: "SS1"
+                },
+                {
+                    question: "What does RAM stand for?",
+                    options: [
+                        "Random Access Memory",
+                        "Readily Available Memory",
+                        "Random Algorithmic Memory",
+                        "Read Access Memory"
+                    ],
+                    correct: 0,
+                    topic: "Hardware",
+                    class: "SS1"
+                },
+                {
+                    question: "Which of these is an input device?",
+                    options: [
+                        "Monitor",
+                        "Printer",
+                        "Speaker",
+                        "Keyboard"
+                    ],
+                    correct: 3,
+                    topic: "Hardware",
+                    class: "SS1"
+                },
+                {
+                    question: "What is the main function of a computer's motherboard?",
+                    options: [
+                        "Store data permanently",
+                        "Connect all components together",
+                        "Display images on screen",
+                        "Process graphics"
+                    ],
+                    correct: 1,
+                    topic: "Hardware",
+                    class: "SS1"
+                },
+                
+                // Computer Software (SS1)
+                {
+                    question: "Which of these is an example of system software?",
+                    options: [
+                        "Microsoft Word",
+                        "Windows Operating System",
+                        "Google Chrome",
+                        "Adobe Photoshop"
+                    ],
+                    correct: 1,
+                    topic: "Software",
+                    class: "SS1"
+                },
+                {
+                    question: "What type of software is Microsoft Excel?",
+                    options: [
+                        "System Software",
+                        "Application Software",
+                        "Utility Software",
+                        "Programming Software"
+                    ],
+                    correct: 1,
+                    topic: "Software",
+                    class: "SS1"
+                },
+                {
+                    question: "Which programming language is often used for web development?",
+                    options: [
+                        "C++",
+                        "Java",
+                        "Python",
+                        "JavaScript"
+                    ],
+                    correct: 3,
+                    topic: "Software",
+                    class: "SS1"
+                },
+                
+                // MS Word (SS2)
+                {
+                    question: "In Microsoft Word, what is the shortcut for saving a document?",
+                    options: [
+                        "Ctrl+C",
+                        "Ctrl+V",
+                        "Ctrl+S",
+                        "Ctrl+P"
+                    ],
+                    correct: 2,
+                    topic: "MS Word",
+                    class: "SS2"
+                },
+                {
+                    question: "Which feature in MS Word allows you to see how your document will look when printed?",
+                    options: [
+                        "Print Layout",
+                        "Draft View",
+                        "Outline View",
+                        "Web Layout"
+                    ],
+                    correct: 0,
+                    topic: "MS Word",
+                    class: "SS2"
+                },
+                {
+                    question: "What does the 'Thesaurus' feature in MS Word do?",
+                    options: [
+                        "Checks grammar",
+                        "Finds synonyms",
+                        "Counts words",
+                        "Formats text"
+                    ],
+                    correct: 1,
+                    topic: "MS Word",
+                    class: "SS2"
+                },
+                
+                // Spreadsheet (SS2)
+                {
+                    question: "In a spreadsheet, what is a cell?",
+                    options: [
+                        "A type of formula",
+                        "The intersection of a row and column",
+                        "A chart type",
+                        "A formatting tool"
+                    ],
+                    correct: 1,
+                    topic: "Spreadsheet",
+                    class: "SS2"
+                },
+                {
+                    question: "Which function in Excel adds up a range of cells?",
+                    options: [
+                        "COUNT",
+                        "AVERAGE",
+                        "SUM",
+                        "MAX"
+                    ],
+                    correct: 2,
+                    topic: "Spreadsheet",
+                    class: "SS2"
+                },
+                {
+                    question: "What does the '$' symbol do in an Excel formula?",
+                    options: [
+                        "Makes a cell reference absolute",
+                        "Indicates a currency value",
+                        "Creates a comment",
+                        "Starts a function"
+                    ],
+                    correct: 0,
+                    topic: "Spreadsheet",
+                    class: "SS2"
+                },
+                {
+                    question: "Which chart type is best for showing trends over time?",
+                    options: [
+                        "Pie Chart",
+                        "Bar Chart",
+                        "Line Chart",
+                        "Scatter Plot"
+                    ],
+                    correct: 2,
+                    topic: "Spreadsheet",
+                    class: "SS2"
+                },
+                 {
+        question: "What is the shortcut key for copying selected text?",
+        options: [
+            "Ctrl + X",
+            "Ctrl + C",
+            "Ctrl + V",
+            "Ctrl + Z"
+        ],
+        correct: 1,
+        topic: "Shortcut Keys",
+        class: "SS1"
+    },
+    {
+        question: "Which shortcut key is used to paste copied content?",
+        options: [
+            "Ctrl + P",
+            "Ctrl + V",
+            "Ctrl + C",
+            "Ctrl + X"
+        ],
+        correct: 1,
+        topic: "Shortcut Keys",
+        class: "SS1"
+    },
+    {
+        question: "What does Ctrl + Z do in most applications?",
+        options: [
+            "Redo an action",
+            "Save document",
+            "Undo an action",
+            "Close application"
+        ],
+        correct: 2,
+        topic: "Shortcut Keys",
+        class: "SS1"
+    },
+    {
+        question: "Which key combination is used to save a document?",
+        options: [
+            "Ctrl + S",
+            "Ctrl + D",
+            "Alt + S",
+            "Shift + S"
+        ],
+        correct: 0,
+        topic: "Shortcut Keys",
+        class: "SS1"
+    },
+    {
+        question: "What is the function of the F5 key in most web browsers?",
+        options: [
+            "Open new tab",
+            "Refresh page",
+            "Bookmark page",
+            "Close browser"
+        ],
+        correct: 1,
+        topic: "Shortcut Keys",
+        class: "SS1"
+    },
+
+    // SS1 Data Representation
+    {
+        question: "What is the binary equivalent of decimal number 5?",
+        options: [
+            "101",
+            "110",
+            "100",
+            "111"
+        ],
+        correct: 0,
+        topic: "Data Representation",
+        class: "SS1"
+    },
+    {
+        question: "How many bits are in a byte?",
+        options: [
+            "4",
+            "8",
+            "16",
+            "32"
+        ],
+        correct: 1,
+        topic: "Data Representation",
+        class: "SS1"
+    },
+    {
+        question: "What number system uses only 0s and 1s?",
+        options: [
+            "Decimal",
+            "Hexadecimal",
+            "Binary",
+            "Octal"
+        ],
+        correct: 2,
+        topic: "Data Representation",
+        class: "SS1"
+    },
+    {
+        question: "What is the decimal value of binary 1001?",
+        options: [
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        correct: 2,
+        topic: "Data Representation",
+        class: "SS1"
+    },
+    {
+        question: "Which of these is a data representation unit?",
+        options: [
+            "Kilogram",
+            "Byte",
+            "Meter",
+            "Second"
+        ],
+        correct: 1,
+        topic: "Data Representation",
+        class: "SS1"
+    },
+
+    // SS1 Networking
+    {
+        question: "What does LAN stand for in networking?",
+        options: [
+            "Long Area Network",
+            "Local Area Network",
+            "Large Access Network",
+            "Limited Area Network"
+        ],
+        correct: 1,
+        topic: "Networking",
+        class: "SS1"
+    },
+    {
+        question: "Which device is used to connect multiple computers in a network?",
+        options: [
+            "Printer",
+            "Monitor",
+            "Router",
+            "Keyboard"
+        ],
+        correct: 2,
+        topic: "Networking",
+        class: "SS1"
+    },
+    {
+        question: "What is the main purpose of a computer network?",
+        options: [
+            "Increase computer speed",
+            "Share resources and information",
+            "Reduce electricity consumption",
+            "Make computers heavier"
+        ],
+        correct: 1,
+        topic: "Networking",
+        class: "SS1"
+    },
+    {
+        question: "Which of these is a network topology?",
+        options: [
+            "Star",
+            "Circle",
+            "Triangle",
+            "Square"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS1"
+    },
+    {
+        question: "What does Wi-Fi allow computers to do?",
+        options: [
+            "Connect wirelessly",
+            "Print documents",
+            "Increase memory",
+            "Cool the system"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS1"
+    },
+
+    // SS2 Shortcut Keys
+    {
+        question: "What is the shortcut for selecting all content in a document?",
+        options: [
+            "Ctrl + A",
+            "Ctrl + S",
+            "Ctrl + D",
+            "Ctrl + F"
+        ],
+        correct: 0,
+        topic: "Shortcut Keys",
+        class: "SS2"
+    },
+    {
+        question: "Which key combination opens the find dialog box?",
+        options: [
+            "Ctrl + H",
+            "Ctrl + G",
+            "Ctrl + F",
+            "Ctrl + D"
+        ],
+        correct: 2,
+        topic: "Shortcut Keys",
+        class: "SS2"
+    },
+    {
+        question: "What does Alt + Tab do in Windows?",
+        options: [
+            "Close current window",
+            "Switch between open applications",
+            "Open task manager",
+            "Minimize all windows"
+        ],
+        correct: 1,
+        topic: "Shortcut Keys",
+        class: "SS2"
+    },
+    {
+        question: "Which shortcut is used to open a new tab in web browsers?",
+        options: [
+            "Ctrl + T",
+            "Ctrl + N",
+            "Ctrl + W",
+            "Ctrl + B"
+        ],
+        correct: 0,
+        topic: "Shortcut Keys",
+        class: "SS2"
+    },
+    {
+        question: "What is the function of Ctrl + B in word processors?",
+        options: [
+            "Italicize text",
+            "Underline text",
+            "Bold text",
+            "Change font size"
+        ],
+        correct: 2,
+        topic: "Shortcut Keys",
+        class: "SS2"
+    },
+
+    // SS2 Data Representation
+    {
+        question: "What is the hexadecimal equivalent of decimal 15?",
+        options: [
+            "A",
+            "B",
+            "E",
+            "F"
+        ],
+        correct: 3,
+        topic: "Data Representation",
+        class: "SS2"
+    },
+    {
+        question: "How many bytes are in a kilobyte (KB)?",
+        options: [
+            "100",
+            "512",
+            "1024",
+            "2048"
+        ],
+        correct: 2,
+        topic: "Data Representation",
+        class: "SS2"
+    },
+    {
+        question: "What is two's complement used for?",
+        options: [
+            "Color representation",
+            "Representing negative numbers in binary",
+            "Network addressing",
+            "File compression"
+        ],
+        correct: 1,
+        topic: "Data Representation",
+        class: "SS2"
+    },
+    {
+        question: "Which number system has base 16?",
+        options: [
+            "Binary",
+            "Decimal",
+            "Octal",
+            "Hexadecimal"
+        ],
+        correct: 3,
+        topic: "Data Representation",
+        class: "SS2"
+    },
+    {
+        question: "What does ASCII stand for?",
+        options: [
+            "American Standard Code for Information Interchange",
+            "Advanced System Computer Information Interface",
+            "Automated Standard Coding for Internet",
+            "American System Computer Information Interface"
+        ],
+        correct: 0,
+        topic: "Data Representation",
+        class: "SS2"
+    },
+
+    // SS2 Networking
+    {
+        question: "What is the purpose of an IP address?",
+        options: [
+            "Identify a computer on a network",
+            "Increase internet speed",
+            "Store website data",
+            "Protect from viruses"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS2"
+    },
+    {
+        question: "Which protocol is used for web browsing?",
+        options: [
+            "FTP",
+            "HTTP",
+            "SMTP",
+            "POP3"
+        ],
+        correct: 1,
+        topic: "Networking",
+        class: "SS2"
+    },
+    {
+        question: "What is the function of a switch in networking?",
+        options: [
+            "Connect multiple networks",
+            "Connect devices within a LAN",
+            "Modulate signals",
+            "Store network data"
+        ],
+        correct: 1,
+        topic: "Networking",
+        class: "SS2"
+    },
+    {
+        question: "What does DNS stand for?",
+        options: [
+            "Domain Name System",
+            "Digital Network Service",
+            "Data Naming System",
+            "Domain Network Service"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS2"
+    },
+    {
+        question: "Which cable type is commonly used in Ethernet networks?",
+        options: [
+            "Coaxial cable",
+            "Fiber optic cable",
+            "Twisted pair cable",
+            "USB cable"
+        ],
+        correct: 2,
+        topic: "Networking",
+        class: "SS2"
+    },
+
+    // SS3 Shortcut Keys
+    {
+        question: "What does Win + L do in Windows?",
+        options: [
+            "Lock the computer",
+            "Log off user",
+            "Load programs",
+            "List files"
+        ],
+        correct: 0,
+        topic: "Shortcut Keys",
+        class: "SS3"
+    },
+    {
+        question: "Which shortcut opens the Windows Task Manager?",
+        options: [
+            "Ctrl + Alt + Delete",
+            "Ctrl + Shift + Esc",
+            "Alt + F4",
+            "Both A and B"
+        ],
+        correct: 3,
+        topic: "Shortcut Keys",
+        class: "SS3"
+    },
+    {
+        question: "What is the function of Ctrl + Shift + N in most web browsers?",
+        options: [
+            "New window",
+            "New incognito window",
+            "New tab",
+            "New bookmark"
+        ],
+        correct: 1,
+        topic: "Shortcut Keys",
+        class: "SS3"
+    },
+    {
+        question: "Which shortcut is used to reopen closed tab in browsers?",
+        options: [
+            "Ctrl + T",
+            "Ctrl + Shift + T",
+            "Ctrl + R",
+            "Ctrl + W"
+        ],
+        correct: 1,
+        topic: "Shortcut Keys",
+        class: "SS3"
+    },
+    {
+        question: "What does F12 key typically open in applications?",
+        options: [
+            "Save As dialog",
+            "Print dialog",
+            "Developer tools",
+            "Help menu"
+        ],
+        correct: 2,
+        topic: "Shortcut Keys",
+        class: "SS3"
+    },
+
+    // SS3 Data Representation
+    {
+        question: "What is the binary representation of hexadecimal A5?",
+        options: [
+            "10100101",
+            "11001010",
+            "10101010",
+            "10100110"
+        ],
+        correct: 0,
+        topic: "Data Representation",
+        class: "SS3"
+    },
+    {
+        question: "What is the purpose of floating-point representation?",
+        options: [
+            "Represent very large or small numbers",
+            "Store text data",
+            "Compress images",
+            "Encrypt data"
+        ],
+        correct: 0,
+        topic: "Data Representation",
+        class: "SS3"
+    },
+    {
+        question: "Which data representation method uses 7 or 8 bits per character?",
+        options: [
+            "Unicode",
+            "ASCII",
+            "Binary Coded Decimal",
+            "Two's Complement"
+        ],
+        correct: 1,
+        topic: "Data Representation",
+        class: "SS3"
+    },
+    {
+        question: "What is the main advantage of hexadecimal over binary?",
+        options: [
+            "More accurate",
+            "Easier for humans to read and write",
+            "Takes less memory",
+            "Faster processing"
+        ],
+        correct: 1,
+        topic: "Data Representation",
+        class: "SS3"
+    },
+    {
+        question: "How many bits are typically used to represent a single color in 24-bit RGB?",
+        options: [
+            "4 bits",
+            "8 bits",
+            "16 bits",
+            "24 bits"
+        ],
+        correct: 1,
+        topic: "Data Representation",
+        class: "SS3"
+    },
+
+    // SS3 Networking
+    {
+        question: "What is the difference between IPv4 and IPv6?",
+        options: [
+            "IPv6 has larger address space",
+            "IPv4 is faster",
+            "IPv6 uses letters instead of numbers",
+            "IPv4 is more secure"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS3"
+    },
+    {
+        question: "What is the purpose of a subnet mask?",
+        options: [
+            "Determine network and host portions of IP address",
+            "Increase network speed",
+            "Encrypt network data",
+            "Filter websites"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS3"
+    },
+    {
+        question: "Which protocol provides secure communication over a network?",
+        options: [
+            "HTTP",
+            "FTP",
+            "HTTPS",
+            "SMTP"
+        ],
+        correct: 2,
+        topic: "Networking",
+        class: "SS3"
+    },
+    {
+        question: "What is the function of a firewall?",
+        options: [
+            "Monitor and control network traffic",
+            "Increase internet speed",
+            "Store website data",
+            "Connect to Wi-Fi"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS3"
+    },
+    {
+        question: "What does VPN stand for and what is its primary purpose?",
+        options: [
+            "Virtual Private Network - secure remote access",
+            "Very Private Network - hide computer",
+            "Virtual Public Network - free internet",
+            "Verified Private Network - speed up connection"
+        ],
+        correct: 0,
+        topic: "Networking",
+        class: "SS3"
+    },
+                // Networking (SS2)
+                {
+                    question: "What does LAN stand for?",
+                    options: [
+                        "Long Area Network",
+                        "Local Access Network",
+                        "Local Area Network",
+                        "Large Area Network"
+                    ],
+                    correct: 2,
+                    topic: "Networking",
+                    class: "SS2"
+                },
+                {
+                    question: "Which device connects multiple computers in a network?",
+                    options: [
+                        "Modem",
+                        "Router",
+                        "Switch",
+                        "Firewall"
+                    ],
+                    correct: 2,
+                    topic: "Networking",
+                    class: "SS2"
+                },
+                {
+                    question: "What is the most common wired network technology?",
+                    options: [
+                        "Bluetooth",
+                        "Wi-Fi",
+                        "Ethernet",
+                        "Infrared"
+                    ],
+                    correct: 2,
+                    topic: "Networking",
+                    class: "SS2"
+                },
+                {
+                    question: "Which protocol is used for sending email?",
+                    options: [
+                        "FTP",
+                        "HTTP",
+                        "SMTP",
+                        "TCP"
+                    ],
+                    correct: 2,
+                    topic: "Networking",
+                    class: "SS2"
+                },
+                
+                // Internet (SS2)
+                {
+                    question: "What does URL stand for?",
+                    options: [
+                        "Uniform Resource Locator",
+                        "Universal Reference Link",
+                        "Uniform Reference Locator",
+                        "Universal Resource Link"
+                    ],
+                    correct: 0,
+                    topic: "Internet",
+                    class: "SS2"
+                },
+                {
+                    question: "Which of these is a web browser?",
+                    options: [
+                        "Google",
+                        "Facebook",
+                        "Chrome",
+                        "Windows"
+                    ],
+                    correct: 2,
+                    topic: "Internet",
+                    class: "SS2"
+                },
+                {
+                    question: "What does HTML stand for?",
+                    options: [
+                        "Hyper Text Markup Language",
+                        "High Tech Modern Language",
+                        "Hyper Transfer Markup Language",
+                        "Home Tool Markup Language"
+                    ],
+                    correct: 0,
+                    topic: "Internet",
+                    class: "SS2"
+                },
+                {
+                    question: "Which organization manages the domain name system?",
+                    options: [
+                        "ICANN",
+                        "UNESCO",
+                        "WHO",
+                        "IEEE"
+                    ],
+                    correct: 0,
+                    topic: "Internet",
+                    class: "SS2"
+                },
+                
+                // Peopleware (SS3)
+                {
+                    question: "What does 'peopleware' refer to in computing?",
+                    options: [
+                        "Computer hardware designed for people",
+                        "The human aspect of computer technology",
+                        "Software with user-friendly interfaces",
+                        "Wearable technology"
+                    ],
+                    correct: 1,
+                    topic: "Peopleware",
+                    class: "SS3"
+                },
+                {
+                    question: "Which of these is an example of peopleware?",
+                    options: [
+                        "Computer programmers",
+                        "Computer mouse",
+                        "Operating system",
+                        "Database software"
+                    ],
+                    correct: 0,
+                    topic: "Peopleware",
+                    class: "SS3"
+                },
+                
+                // Procedures (SS3)
+                {
+                    question: "In computing, what are procedures?",
+                    options: [
+                        "The physical components of a computer",
+                        "Step-by-step instructions for completing tasks",
+                        "Software applications",
+                        "User interfaces"
+                    ],
+                    correct: 1,
+                    topic: "Procedures",
+                    class: "SS3"
+                },
+                {
+                    question: "Which of these is an example of a computer procedure?",
+                    options: [
+                        "A computer monitor",
+                        "A step-by-step guide for installing software",
+                        "A programming language",
+                        "An internet browser"
+                    ],
+                    correct: 1,
+                    topic: "Procedures",
+                    class: "SS3"
+                },
+                
+                // Advanced Hardware (SS3)
+                {
+                    question: "What is the purpose of a GPU?",
+                    options: [
+                        "Store data permanently",
+                        "Process graphics and images",
+                        "Manage memory allocation",
+                        "Control input devices"
+                    ],
+                    correct: 1,
+                    topic: "Hardware",
+                    class: "SS3"
+                },
+                {
+                    question: "Which storage device has no moving parts?",
+                    options: [
+                        "Hard Disk Drive",
+                        "Solid State Drive",
+                        "Floppy Disk",
+                        "CD-ROM"
+                    ],
+                    correct: 1,
+                    topic: "Hardware",
+                    class: "SS3"
+                },
+                
+                // Advanced Software (SS3)
+                {
+                    question: "What is an operating system?",
+                    options: [
+                        "A program that manages computer hardware and software",
+                        "A type of application software",
+                        "A computer programming language",
+                        "A database management system"
+                    ],
+                    correct: 0,
+                    topic: "Software",
+                    class: "SS3"
+                },
+                {
+                    question: "Which of these is an open-source operating system?",
+                    options: [
+                        "Windows",
+                        "macOS",
+                        "Linux",
+                        "iOS"
+                    ],
+                    correct: 2,
+                    topic: "Software",
+                    class: "SS3"
+                },
+                
+                // Advanced Networking (SS3)
+                {
+                    question: "What does VPN stand for?",
+                    options: [
+                        "Virtual Private Network",
+                        "Very Private Network",
+                        "Virtual Public Network",
+                        "Verified Private Network"
+                    ],
+                    correct: 0,
+                    topic: "Networking",
+                    class: "SS3"
+                },
+                {
+                    question: "Which protocol provides secure communication over the internet?",
+                    options: [
+                        "HTTP",
+                        "FTP",
+                        "HTTPS",
+                        "SMTP"
+                    ],
+                    correct: 2,
+                    topic: "Networking",
+                    class: "SS3"
+                },
+                
+                // Advanced Internet (SS3)
+                {
+                    question: "What is cloud computing?",
+                    options: [
+                        "Using weather data in computing",
+                        "Storing data on local servers only",
+                        "Delivery of computing services over the internet",
+                        "A type of computer hardware"
+                    ],
+                    correct: 2,
+                    topic: "Internet",
+                    class: "SS3"
+                },
+                {
+                    question: "Which of these is a cloud storage service?",
+                    options: [
+                        "Microsoft Word",
+                        "Google Drive",
+                        "Adobe Photoshop",
+                        "Windows Explorer"
+                    ],
+                    correct: 1,
+                    topic: "Internet",
+                    class: "SS3"
+                },
+                
+                // Computer Security (SS3)
+                {
+                    question: "What is the purpose of a firewall?",
+                    options: [
+                        "To speed up internet connection",
+                        "To block unauthorized access to a network",
+                        "To store backup data",
+                        "To manage email accounts"
+                    ],
+                    correct: 1,
+                    topic: "Internet",
+                    class: "SS3"
+                },
+                {
+                    question: "Which of these is a strong password practice?",
+                    options: [
+                        "Using your name as password",
+                        "Using the same password for all accounts",
+                        "Using a combination of letters, numbers, and symbols",
+                        "Writing passwords on sticky notes"
+                    ],
+                    correct: 2,
+                    topic: "Internet",
+                    class: "SS3"
+                },
+                
+                // Data Management (SS3)
+                {
+                    question: "What is a database?",
+                    options: [
+                        "A collection of related data organized for efficient retrieval",
+                        "A type of computer hardware",
+                        "A programming language",
+                        "An internet browser"
+                    ],
+                    correct: 0,
+                    topic: "Software",
+                    class: "SS3"
+                },
+                {
+                    question: "Which of these is a database management system?",
+                    options: [
+                        "Microsoft Excel",
+                        "MySQL",
+                        "Google Chrome",
+                        "Adobe Reader"
+                    ],
+                    correct: 1,
+                    topic: "Software",
+                    class: "SS3"
+                }
+            ],
+            'mathematics': [
+                {
+                    question: "What is the value of π (pi) to two decimal places?",
+                    options: ["3.14", "3.16", "3.12", "3.18"],
+                    correct: 0
+                },
+                {
+                    question: "Solve for x: 2x + 5 = 15",
+                    options: ["5", "10", "7.5", "8"],
+                    correct: 0
+                }
+                // Additional questions for other subjects would be added here
+            ]
+            // Other subjects would follow the same pattern
+        };
+
+        // Initialize the application
+        function init() {
+            studentForm.addEventListener('submit', startExam);
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            submitBtn.addEventListener('click', submitExam);
+            printBtn.addEventListener('click', printResult);
+            excelBtn.addEventListener('click', saveToExcel);
+            restartBtn.addEventListener('click', restartExam);
+        }
+
+        // Start the exam
+        function startExam(e) {
+            e.preventDefault();
+            
+            // Get student data
+            studentData = {
+                name: document.getElementById('student-name').value,
+                id: document.getElementById('student-id').value,
+                class: document.getElementById('student-class').value,
+                department: document.getElementById('student-department').value,
+                subject: document.getElementById('exam-subject').value
+            };
+            
+            // Hide student info and show exam interface
+            studentInfo.style.display = 'none';
+            examInterface.style.display = 'block';
+            timerElement.classList.remove('hidden');
+            
+            // Initialize answers array
+            const subject = studentData.subject;
+            answers = new Array(questions[subject].length).fill(null);
+            
+            // Start timer
+            startTimer();
+            
+            // Display first question
+            showQuestion(0);
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeLeft < 300) { // 5 minutes
+                timerElement.style.background = '#e74c3c';
+            }
+        }
+
+        // Display a specific question
+        function showQuestion(index) {
+            currentQuestion = index;
+            const subject = studentData.subject;
+            const question = questions[subject][index];
+            
+            // Update progress bar
+            const progress = ((index + 1) / questions[subject].length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Build question HTML
+            let questionHTML = `
+                <div class="question">
+                    <div class="question-number">Question ${index + 1} of ${questions[subject].length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+            `;
+            
+            question.options.forEach((option, i) => {
+                const isChecked = answers[index] === i ? 'checked' : '';
+                questionHTML += `
+                    <div class="option">
+                        <input type="radio" id="q${index}o${i}" name="q${index}" value="${i}" ${isChecked}>
+                        <label for="q${index}o${i}">${option}</label>
+                    </div>
+                `;
+            });
+            
+            questionHTML += `</div></div>`;
+            
+            questionsContainer.innerHTML = questionHTML;
+            
+            // Add event listeners to options
+            question.options.forEach((option, i) => {
+                document.getElementById(`q${index}o${i}`).addEventListener('change', () => {
+                    answers[index] = i;
+                });
+            });
+            
+            // Update navigation buttons
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions[subject].length - 1;
+        }
+
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        // Show next question
+        function showNextQuestion() {
+            const subject = studentData.subject;
+            if (currentQuestion < questions[subject].length - 1) {
+                showQuestion(currentQuestion + 1);
+            }
+        }
+
+        // Submit the exam
+        function submitExam() {
+            clearInterval(timer);
+            
+            // Calculate score
+            const subject = studentData.subject;
+            let score = 0;
+            
+            for (let i = 0; i < questions[subject].length; i++) {
+                if (answers[i] === questions[subject][i].correct) {
+                    score++;
+                }
+            }
+            
+            // Calculate time spent
+            const timeSpent = 40 * 60 - timeLeft;
+            const minutesSpent = Math.floor(timeSpent / 60);
+            const secondsSpent = timeSpent % 60;
+            const timeSpentFormatted = `${minutesSpent.toString().padStart(2, '0')}:${secondsSpent.toString().padStart(2, '0')}`;
+            
+            // Determine pass/fail
+            const passMark = 25; // 62.5%
+            const passed = score >= passMark;
+            
+            // Store result data
+            const resultData = {
+                ...studentData,
+                score: score,
+                total: questions[subject].length,
+                percentage: (score / questions[subject].length * 100).toFixed(2),
+                timeSpent: timeSpentFormatted,
+                passed: passed,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            // Add to exam data for potential Excel export
+            examData.push(resultData);
+            
+            // Show waiting screen
+            showWaitingScreen(resultData);
+        }
+
+        // Show waiting screen with countdown
+        function showWaitingScreen(resultData) {
+            examInterface.style.display = 'none';
+            waitingContainer.classList.remove('hidden');
+            
+            // Start countdown for results
+            startResultCountdown(resultData);
+        }
+
+        // Start countdown for results display
+        function startResultCountdown(resultData) {
+            updateCountdownDisplay();
+            
+            resultTimer = setInterval(() => {
+                resultWaitTime--;
+                updateCountdownDisplay();
+                
+                if (resultWaitTime <= 0) {
+                    clearInterval(resultTimer);
+                    showResult(resultData);
+                }
+            }, 1000);
+        }
+
+        // Update countdown display
+        function updateCountdownDisplay() {
+            const minutes = Math.floor(resultWaitTime / 60);
+            const seconds = resultWaitTime % 60;
+            countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Show full result after countdown
+        function showResult(resultData) {
+            waitingContainer.classList.add('hidden');
+            resultContainer.style.display = 'block';
+            
+            // Update result display
+            resultName.textContent = resultData.name;
+            resultId.textContent = resultData.id;
+            resultClass.textContent = resultData.class;
+            resultDepartment.textContent = resultData.department;
+            resultSubject.textContent = document.getElementById('exam-subject').options[document.getElementById('exam-subject').selectedIndex].text;
+            resultTime.textContent = resultData.timeSpent;
+            
+            scoreDisplay.textContent = `${resultData.score}/${resultData.total}`;
+            scoreDisplay.className = `score ${resultData.passed ? 'pass' : 'fail'}`;
+            
+            // Show pass/fail alert
+            if (resultData.passed) {
+                resultAlert.className = 'alert alert-success';
+                resultAlert.textContent = 'Congratulations! You have passed the exam.';
+            } else {
+                resultAlert.className = 'alert alert-danger';
+                resultAlert.textContent = 'Sorry, you did not pass the exam.';
+            }
+        }
+
+        // Print result
+        function printResult() {
+            window.print();
+        }
+
+        // Save to Excel (simulated)
+        function saveToExcel() {
+            alert('Result saved to Excel format. In a real application, this would download an Excel file.');
+            // In a real implementation, you would use a library like SheetJS to create an Excel file
+        }
+
+        // Restart exam
+        function restartExam() {
+            // Reset all variables
+            currentQuestion = 0;
+            answers = [];
+            timeLeft = 40 * 60;
+            resultWaitTime = 3 * 60; // Reset to 3 minutes
+            studentData = {};
+            
+            // Show student info form
+            studentInfo.style.display = 'block';
+            examInterface.style.display = 'none';
+            resultContainer.style.display = 'none';
+            waitingContainer.classList.add('hidden');
+            timerElement.classList.add('hidden');
+            
+            // Reset form
+            studentForm.reset();
+        }
+
+        // Initialize the app when the page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

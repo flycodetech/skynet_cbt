@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCBT Pro - Senior Secondary CBT Platform</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --science: #4cc9f0;
+            --commercial: #7209b7;
+            --art: #f8961e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .welcome-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .welcome-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .department-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .dept-card {
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .dept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .science {
+            background: linear-gradient(135deg, var(--science), #3a86ff);
+        }
+        
+        .commercial {
+            background: linear-gradient(135deg, var(--commercial), #560bad);
+        }
+        
+        .art {
+            background: linear-gradient(135deg, var(--art), #f3722c);
+        }
+        
+        .dept-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .dept-card p {
+            margin-bottom: 20px;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        
+        .performance-chart {
+            height: 200px;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.7);
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+        }
+        
+        .chart-bar span {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .subject-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .subject-card {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            background: var(--light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .subject-card:hover {
+            background: #e9ecef;
+            transform: translateY(-3px);
+        }
+        
+        .test-interface {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--danger);
+            background: rgba(247, 37, 133, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .question-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .question-nav-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .question-nav-btn.current {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .question-nav-btn.answered {
+            border-color: var(--success);
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .question-nav-btn.flagged {
+            border-color: var(--warning);
+            background-color: var(--warning);
+            color: white;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+        
+        .option.selected {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .test-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .score-inner {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .score-label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .performance-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .breakdown-card {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .breakdown-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .breakdown-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .strength {
+            background-color: rgba(76, 201, 240, 0.1);
+            border-left: 4px solid var(--science);
+        }
+        
+        .weakness {
+            background-color: rgba(247, 37, 133, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+        
+        .recommendation {
+            background-color: rgba(248, 150, 30, 0.1);
+            border-left: 4px solid var(--warning);
+        }
+        
+        .subject-progress {
+            margin-top: 30px;
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: var(--light);
+            border-radius: 8px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            flex-grow: 1;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .alert-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .alert-box h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .alert-box p {
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+        }
+        
+        .pass {
+            color: var(--success);
+        }
+        
+        .fail {
+            color: var(--danger);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .department-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .test-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>EduCBT Pro</h1>
+                <span>Master Your Domain, Ace Your Exams</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('dashboard')">Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('tests')">Tests</a></li>
+                    <li><a href="#" onclick="showPage('analytics')">Analytics</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <span id="user-display">Student (SS3 - Science)</span>
+                <button class="btn btn-outline" style="color: white; border-color: white;">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Welcome Page -->
+        <div id="welcome" class="page active">
+            <div class="welcome-section">
+                <h2>Welcome to EduCBT Pro</h2>
+                <p>Your personalized Computer-Based Testing platform designed specifically for Senior Secondary Students in Nigeria.</p>
+                <p>Select your department to get started with tailored practice tests and exams.</p>
+                
+                <div class="department-cards">
+                    <div class="dept-card science" onclick="selectDepartment('science')">
+                        <h3>Science</h3>
+                        <p>Physics, Chemistry, Biology, Further Mathematics, and more</p>
+                        <button class="btn btn-outline" style="color: white; border-color: white;">Select Science</button>
+                    </div>
+                    <div class="dept-card commercial" onclick="selectDepartment('commercial')">
+                        <h3>Commercial</h3>
+                        <p>Economics, Commerce, Accounting, Business Studies, and more</p>
+                        <button class="btn btn-outline" style="color: white; border-color: white;">Select Commercial</button>
+                    </div>
+                    <div class="dept-card art" onclick="selectDepartment('art')">
+                        <h3>Art</h3>
+                        <p>Literature, Government, History, CRS/IRS, and more</p>
+                        <button class="btn btn-outline" style="color: white; border-color: white;">Select Art</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page">
+            <div class="card">
+                <h2>Dashboard</h2>
+                <p id="welcome-message">Welcome back! Here's your current performance overview.</p>
+                
+                <div class="dashboard">
+                    <div>
+                        <h3>Overall Performance</h3>
+                        <div class="performance-chart">
+                            <div class="chart-bar" style="height: 80%;"><span>Math</span></div>
+                            <div class="chart-bar" style="height: 65%;"><span>Physics</span></div>
+                            <div class="chart-bar" style="height: 55%;"><span>Chemistry</span></div>
+                            <div class="chart-bar" style="height: 75%;"><span>Biology</span></div>
+                            <div class="chart-bar" style="height: 70%;"><span>English</span></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3>Quick Actions</h3>
+                        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                            <button class="btn btn-primary" onclick="startFullExam()">Start Full Exam (All 11 Subjects)</button>
+                            <button class="btn btn-outline" onclick="showPage('tests')">Practice Individual Subjects</button>
+                            <button class="btn btn-outline" onclick="showPage('analytics')">View Detailed Analytics</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px;">Performance by Subject</h3>
+                <div class="subject-list">
+                    <div class="subject-card">
+                        <h4>Mathematics</h4>
+                        <div style="background: #e9ecef; height: 10px; border-radius: 5px; margin: 10px 0;">
+                            <div style="background: var(--success); width: 80%; height: 100%; border-radius: 5px;"></div>
+                        </div>
+                        <p>80%</p>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Physics</h4>
+                        <div style="background: #e9ecef; height: 10px; border-radius: 5px; margin: 10px 0;">
+                            <div style="background: var(--success); width: 65%; height: 100%; border-radius: 5px;"></div>
+                        </div>
+                        <p>65%</p>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Chemistry</h4>
+                        <div style="background: #e9ecef; height: 10px; border-radius: 5px; margin: 10px 0;">
+                            <div style="background: var(--danger); width: 55%; height: 100%; border-radius: 5px;"></div>
+                        </div>
+                        <p>55% <small>(Weak Area!)</small></p>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Biology</h4>
+                        <div style="background: #e9ecef; height: 10px; border-radius: 5px; margin: 10px 0;">
+                            <div style="background: var(--success); width: 75%; height: 100%; border-radius: 5px;"></div>
+                        </div>
+                        <p>75%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tests Page -->
+        <div id="tests" class="page">
+            <div class="card">
+                <h2>Practice Tests</h2>
+                <p>Select a subject to practice or start a full exam with all 11 subjects.</p>
+                
+                <div class="subject-list">
+                    <div class="subject-card" onclick="startSubjectTest('Mathematics')">
+                        <h4>Mathematics</h4>
+                        <p>20 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('English')">
+                        <h4>English Language</h4>
+                        <p>25 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Physics')">
+                        <h4>Physics</h4>
+                        <p>30 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Chemistry')">
+                        <h4>Chemistry</h4>
+                        <p>25 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Biology')">
+                        <h4>Biology</h4>
+                        <p>30 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Economics')">
+                        <h4>Economics</h4>
+                        <p>20 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Commerce')">
+                        <h4>Commerce</h4>
+                        <p>25 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Accounting')">
+                        <h4>Accounting</h4>
+                        <p>30 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Literature')">
+                        <h4>Literature</h4>
+                        <p>25 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('Government')">
+                        <h4>Government</h4>
+                        <p>20 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                    <div class="subject-card" onclick="startSubjectTest('History')">
+                        <h4>History</h4>
+                        <p>25 Questions</p>
+                        <small>60 minutes</small>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-primary" onclick="startFullExam()">Start Full Exam (All 11 Subjects)</button>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Total time: 11 hours (1 hour per subject)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Interface -->
+        <div id="test" class="page">
+            <div class="card test-interface">
+                <div class="test-header">
+                    <div>
+                        <h3 id="test-title">Subject Test</h3>
+                        <p>Question <span id="current-q">1</span> of <span id="total-qs">20</span></p>
+                        <p id="subject-info">Subject: Mathematics | Time: 60 minutes</p>
+                    </div>
+                    <div class="timer" id="timer">60:00</div>
+                </div>
+                
+                <div class="question-navigation" id="q-navigation">
+                    <!-- Navigation buttons will be generated by JavaScript -->
+                </div>
+                
+                <div class="question-container">
+                    <div class="question-text" id="question-text">
+                        Loading question...
+                    </div>
+                    
+                    <div class="options-container" id="options-container">
+                        <!-- Options will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="test-controls">
+                    <button class="btn btn-outline" onclick="flagQuestion()">Flag Question</button>
+                    <div>
+                        <button class="btn btn-outline" onclick="navigateQuestion('prev')">Previous</button>
+                        <button class="btn btn-primary" onclick="navigateQuestion('next')">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div id="results" class="page">
+            <div class="card result-container">
+                <h2>Exam Completed!</h2>
+                <p id="results-description">Here's how you performed in your exam.</p>
+                
+                <div class="score-circle" id="score-circle">
+                    <!-- Score circle will be generated by JavaScript -->
+                </div>
+                
+                <div class="subject-progress" id="subject-results">
+                    <!-- Subject results will be generated by JavaScript -->
+                </div>
+                
+                <div class="performance-breakdown">
+                    <div class="breakdown-card strength">
+                        <h4>Strongest Subjects</h4>
+                        <p id="strong-subjects">Mathematics, English</p>
+                    </div>
+                    <div class="breakdown-card weakness">
+                        <h4>Need Improvement</h4>
+                        <p id="weak-subjects">Chemistry, Physics</p>
+                    </div>
+                    <div class="breakdown-card recommendation">
+                        <h4>Recommendations</h4>
+                        <p>Focus on Science subjects</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <button class="btn btn-primary" onclick="showPage('dashboard')">Back to Dashboard</button>
+                    <button class="btn btn-outline" onclick="reviewTest()">Review Answers</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Page -->
+        <div id="analytics" class="page">
+            <div class="card">
+                <h2>Performance Analytics</h2>
+                <p>Detailed analysis of your test performance across all subjects.</p>
+                
+                <div class="subject-progress">
+                    <h3>Subject-wise Performance</h3>
+                    <!-- Analytics will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pass/Fail Alert -->
+    <div id="passFailAlert" class="alert-overlay" style="display: none;">
+        <div class="alert-box">
+            <h2 id="alert-title">Exam Results</h2>
+            <p id="alert-message">You have successfully completed the exam.</p>
+            <button class="btn btn-primary" onclick="closeAlert()">View Detailed Results</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EduCBT Pro &copy; 2023 - Master Your Domain, Ace Your Exams</p>
+            <p>Designed for SS1-SS3 Students in Science, Commercial and Art Departments</p>
+        </div>
+    </footer>
+
+    <script>
+        // Application state
+        const appState = {
+            currentUser: {
+                name: "Student",
+                class: "SS3",
+                department: "science"
+            },
+            currentTest: {
+                type: "", // "subject" or "full"
+                subject: "",
+                questions: [],
+                currentQuestionIndex: 0,
+                userAnswers: [],
+                flaggedQuestions: [],
+                timeLeft: 0,
+                timerInterval: null,
+                startTime: null
+            },
+            examResults: {
+                subjects: [],
+                totalScore: 0,
+                passed: false
+            }
+        };
+
+        // Sample questions database (in a real app, this would come from a server)
+        const questionBank = {
+            Mathematics: [
+                {
+                    id: 1,
+                    text: "What is the value of 3x + 5 when x = 4?",
+                    options: ["12", "17", "20", "15"],
+                    correct: 1,
+                    topic: "Algebra"
+                },
+                {
+                    id: 2,
+                    text: "If a circle has a radius of 7cm, what is its area? (Use π = 22/7)",
+                    options: ["154 cm²", "44 cm²", "88 cm²", "22 cm²"],
+                    correct: 0,
+                    topic: "Geometry"
+                },
+                {
+                    id: 3,
+                    text: "Solve for x: 2x - 5 = 15",
+                    options: ["5", "10", "15", "20"],
+                    correct: 1,
+                    topic: "Algebra"
+                },
+                {
+                    id: 4,
+                    text: "What is the square root of 144?",
+                    options: ["11", "12", "13", "14"],
+                    correct: 1,
+                    topic: "Arithmetic"
+                },
+                {
+                    id: 5,
+                    text: "If y = 2x + 3 and x = 4, what is y?",
+                    options: ["7", "9", "11", "13"],
+                    correct: 2,
+                    topic: "Algebra"
+                }
+            ],
+            English: [
+                {
+                    id: 1,
+                    text: "Choose the correct synonym for 'Benevolent'",
+                    options: ["Kind", "Cruel", "Selfish", "Greedy"],
+                    correct: 0,
+                    topic: "Vocabulary"
+                },
+                {
+                    id: 2,
+                    text: "Which sentence is grammatically correct?",
+                    options: [
+                        "She don't like apples.",
+                        "He doesn't likes apples.",
+                        "They doesn't like apples.",
+                        "He doesn't like apples."
+                    ],
+                    correct: 3,
+                    topic: "Grammar"
+                },
+                {
+                    id: 3,
+                    text: "What is the past tense of 'go'?",
+                    options: ["Goed", "Went", "Gone", "Going"],
+                    correct: 1,
+                    topic: "Grammar"
+                },
+                {
+                    id: 4,
+                    text: "Identify the noun in the sentence: 'The quick brown fox jumps over the lazy dog.'",
+                    options: ["Quick", "Jumps", "Fox", "Over"],
+                    correct: 2,
+                    topic: "Parts of Speech"
+                },
+                {
+                    id: 5,
+                    text: "What is the literary device used in 'The stars danced playfully in the moonlit sky'?",
+                    options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
+                    correct: 2,
+                    topic: "Literary Devices"
+                }
+            ],
+            Physics: [
+                {
+                    id: 1,
+                    text: "What is the SI unit of force?",
+                    options: ["Joule", "Newton", "Watt", "Pascal"],
+                    correct: 1,
+                    topic: "Mechanics"
+                },
+                {
+                    id: 2,
+                    text: "Which of these is a vector quantity?",
+                    options: ["Mass", "Speed", "Temperature", "Velocity"],
+                    correct: 3,
+                    topic: "Mechanics"
+                },
+                {
+                    id: 3,
+                    text: "What is the speed of light in vacuum?",
+                    options: ["3 × 10^6 m/s", "3 × 10^8 m/s", "3 × 10^10 m/s", "3 × 10^12 m/s"],
+                    correct: 1,
+                    topic: "Optics"
+                },
+                {
+                    id: 4,
+                    text: "According to Ohm's Law, V = ?",
+                    options: ["I/R", "IR", "I²R", "R/I"],
+                    correct: 1,
+                    topic: "Electricity"
+                },
+                {
+                    id: 5,
+                    text: "What type of lens is used to correct short-sightedness?",
+                    options: ["Convex", "Concave", "Plano-convex", "Cylindrical"],
+                    correct: 1,
+                    topic: "Optics"
+                }
+            ],
+            Chemistry: [
+                {
+                    id: 1,
+                    text: "What is the atomic number of Carbon?",
+                    options: ["6", "12", "14", "16"],
+                    correct: 0,
+                    topic: "Atomic Structure"
+                },
+                {
+                    id: 2,
+                    text: "Which of these is a noble gas?",
+                    options: ["Oxygen", "Nitrogen", "Helium", "Chlorine"],
+                    correct: 2,
+                    topic: "Periodic Table"
+                },
+                {
+                    id: 3,
+                    text: "What is the chemical formula for water?",
+                    options: ["H2O", "HO2", "H2O2", "H3O"],
+                    correct: 0,
+                    topic: "Chemical Formulas"
+                },
+                {
+                    id: 4,
+                    text: "What is the pH of a neutral solution?",
+                    options: ["0", "7", "10", "14"],
+                    correct: 1,
+                    topic: "Acids and Bases"
+                },
+                {
+                    id: 5,
+                    text: "Which element is represented by the symbol 'Na'?",
+                    options: ["Nitrogen", "Nickel", "Sodium", "Neon"],
+                    correct: 2,
+                    topic: "Chemical Symbols"
+                }
+            ],
+            Biology: [
+                {
+                    id: 1,
+                    text: "What is the basic unit of life?",
+                    options: ["Atom", "Cell", "Molecule", "Organ"],
+                    correct: 1,
+                    topic: "Cell Biology"
+                },
+                {
+                    id: 2,
+                    text: "Which organ is responsible for pumping blood?",
+                    options: ["Lungs", "Liver", "Heart", "Kidney"],
+                    correct: 2,
+                    topic: "Human Anatomy"
+                },
+                {
+                    id: 3,
+                    text: "Photosynthesis occurs in which part of the plant cell?",
+                    options: ["Mitochondria", "Nucleus", "Chloroplast", "Ribosome"],
+                    correct: 2,
+                    topic: "Plant Biology"
+                },
+                {
+                    id: 4,
+                    text: "What is the process by which plants make their food?",
+                    options: ["Respiration", "Photosynthesis", "Digestion", "Transpiration"],
+                    correct: 1,
+                    topic: "Plant Biology"
+                },
+                {
+                    id: 5,
+                    text: "Which blood type is known as the universal donor?",
+                    options: ["A", "B", "AB", "O"],
+                    correct: 3,
+                    topic: "Human Physiology"
+                }
+            ],
+            Economics: [
+                {
+                    id: 1,
+                    text: "What does GDP stand for?",
+                    options: [
+                        "Gross Domestic Product",
+                        "General Domestic Price",
+                        "Gross Demand Product",
+                        "General Demand Price"
+                    ],
+                    correct: 0,
+                    topic: "Macroeconomics"
+                },
+                {
+                    id: 2,
+                    text: "What is the basic economic problem?",
+                    options: [
+                        "Unemployment",
+                        "Scarcity of resources",
+                        "Inflation",
+                        "Government regulation"
+                    ],
+                    correct: 1,
+                    topic: "Basic Concepts"
+                },
+                {
+                    id: 3,
+                    text: "Which of these is a factor of production?",
+                    options: ["Money", "Land", "Price", "Goods"],
+                    correct: 1,
+                    topic: "Factors of Production"
+                },
+                {
+                    id: 4,
+                    text: "What is inflation?",
+                    options: [
+                        "Decrease in prices",
+                        "Increase in prices",
+                        "Stability in prices",
+                        "Decrease in money supply"
+                    ],
+                    correct: 1,
+                    topic: "Macroeconomics"
+                },
+                {
+                    id: 5,
+                    text: "What type of tax is VAT?",
+                    options: ["Direct tax", "Indirect tax", "Progressive tax", "Proportional tax"],
+                    correct: 1,
+                    topic: "Public Finance"
+                }
+            ],
+            Commerce: [
+                {
+                    id: 1,
+                    text: "What is the primary function of commerce?",
+                    options: [
+                        "Production",
+                        "Exchange",
+                        "Consumption",
+                        "Distribution"
+                    ],
+                    correct: 1,
+                    topic: "Introduction to Commerce"
+                },
+                {
+                    id: 2,
+                    text: "Which document is used in international trade?",
+                    options: ["Invoice", "Bill of Lading", "Receipt", "Voucher"],
+                    correct: 1,
+                    topic: "International Trade"
+                },
+                {
+                    id: 3,
+                    text: "What is the role of a wholesaler?",
+                    options: [
+                        "Sell directly to consumers",
+                        "Sell to retailers",
+                        "Manufacture goods",
+                        "Provide banking services"
+                    ],
+                    correct: 1,
+                    topic: "Trade"
+                },
+                {
+                    id: 4,
+                    text: "What does SME stand for?",
+                    options: [
+                        "Small and Medium Enterprises",
+                        "Sales and Marketing Executives",
+                        "Stock Market Exchange",
+                        "Strategic Management Entity"
+                    ],
+                    correct: 0,
+                    topic: "Business Organizations"
+                },
+                {
+                    id: 5,
+                    text: "Which of these is a means of payment?",
+                    options: ["Cheque", "Invoice", "Receipt", "Ledger"],
+                    correct: 0,
+                    topic: "Finance"
+                }
+            ],
+            Accounting: [
+                {
+                    id: 1,
+                    text: "What is the accounting equation?",
+                    options: [
+                        "Assets = Liabilities + Capital",
+                        "Assets = Liabilities - Capital",
+                        "Assets = Capital - Liabilities",
+                        "Liabilities = Assets + Capital"
+                    ],
+                    correct: 0,
+                    topic: "Basic Principles"
+                },
+                {
+                    id: 2,
+                    text: "Which account increases with a debit?",
+                    options: ["Asset", "Liability", "Capital", "Revenue"],
+                    correct: 0,
+                    topic: "Double Entry"
+                },
+                {
+                    id: 3,
+                    text: "What is the purpose of a trial balance?",
+                    options: [
+                        "To prepare financial statements",
+                        "To check accuracy of ledger balances",
+                        "To record transactions",
+                        "To calculate profit"
+                    ],
+                    correct: 1,
+                    topic: "Trial Balance"
+                },
+                {
+                    id: 4,
+                    text: "Which financial statement shows financial position?",
+                    options: [
+                        "Income Statement",
+                        "Balance Sheet",
+                        "Cash Flow Statement",
+                        "Statement of Equity"
+                    ],
+                    correct: 1,
+                    topic: "Financial Statements"
+                },
+                {
+                    id: 5,
+                    text: "What is depreciation?",
+                    options: [
+                        "Increase in asset value",
+                        "Decrease in asset value",
+                        "Maintenance cost",
+                        "Purchase cost"
+                    ],
+                    correct: 1,
+                    topic: "Assets"
+                }
+            ],
+            Literature: [
+                {
+                    id: 1,
+                    text: "Who wrote 'Things Fall Apart'?",
+                    options: [
+                        "Wole Soyinka",
+                        "Chinua Achebe",
+                        "Chimamanda Adichie",
+                        "Ben Okri"
+                    ],
+                    correct: 1,
+                    topic: "African Literature"
+                },
+                {
+                    id: 2,
+                    text: "What is a sonnet?",
+                    options: [
+                        "A 14-line poem",
+                        "A type of novel",
+                        "A play",
+                        "A short story"
+                    ],
+                    correct: 0,
+                    topic: "Poetry"
+                },
+                {
+                    id: 3,
+                    text: "What is the definition of a protagonist?",
+                    options: [
+                        "The main character",
+                        "The villain",
+                        "A supporting character",
+                        "The narrator"
+                    ],
+                    correct: 0,
+                    topic: "Literary Terms"
+                },
+                {
+                    id: 4,
+                    text: "Which of these is a tragedy?",
+                    options: [
+                        "Romeo and Juliet",
+                        "A Midsummer Night's Dream",
+                        "As You Like It",
+                        "The Tempest"
+                    ],
+                    correct: 0,
+                    topic: "Drama"
+                },
+                {
+                    id: 5,
+                    text: "What is imagery in literature?",
+                    options: [
+                        "Descriptive language that appeals to the senses",
+                        "The main idea of a story",
+                        "The sequence of events",
+                        "The emotional atmosphere"
+                    ],
+                    correct: 0,
+                    topic: "Literary Devices"
+                }
+            ],
+            Government: [
+                {
+                    id: 1,
+                    text: "What is democracy?",
+                    options: [
+                        "Government by the people",
+                        "Government by a king",
+                        "Government by the military",
+                        "Government by a single party"
+                    ],
+                    correct: 0,
+                    topic: "Political Systems"
+                },
+                {
+                    id: 2,
+                    text: "Which arm of government makes laws?",
+                    options: ["Executive", "Legislature", "Judiciary", "Military"],
+                    correct: 1,
+                    topic: "Government Structure"
+                },
+                {
+                    id: 3,
+                    text: "What is the constitution?",
+                    options: [
+                        "A set of fundamental principles",
+                        "A political party",
+                        "A type of election",
+                        "A government department"
+                    ],
+                    correct: 0,
+                    topic: "Constitution"
+                },
+                {
+                    id: 4,
+                    text: "Which country practices federalism?",
+                    options: ["Nigeria", "France", "United Kingdom", "Ghana"],
+                    correct: 0,
+                    topic: "Systems of Government"
+                },
+                {
+                    id: 5,
+                    text: "What is suffrage?",
+                    options: [
+                        "The right to vote",
+                        "The right to free speech",
+                        "The right to property",
+                        "The right to education"
+                    ],
+                    correct: 0,
+                    topic: "Electoral Systems"
+                }
+            ],
+            History: [
+                {
+                    id: 1,
+                    text: "When did Nigeria gain independence?",
+                    options: ["1957", "1960", "1963", "1966"],
+                    correct: 1,
+                    topic: "Nigerian History"
+                },
+                {
+                    id: 2,
+                    text: "Who was the first president of Nigeria?",
+                    options: [
+                        "Nnamdi Azikiwe",
+                        "Obafemi Awolowo",
+                        "Ahmadu Bello",
+                        "Tafawa Balewa"
+                    ],
+                    correct: 0,
+                    topic: "Nigerian History"
+                },
+                {
+                    id: 3,
+                    text: "What was the transatlantic slave trade?",
+                    options: [
+                        "Trade between Africa and Asia",
+                        "Trade between Europe and America",
+                        "Trade of enslaved Africans across the Atlantic",
+                        "Trade of spices from India"
+                    ],
+                    correct: 2,
+                    topic: "World History"
+                },
+                {
+                    id: 4,
+                    text: "Which empire was known for the Benin Bronzes?",
+                    options: [
+                        "Oyo Empire",
+                        "Benin Empire",
+                        "Songhai Empire",
+                        "Ghana Empire"
+                    ],
+                    correct: 1,
+                    topic: "African History"
+                },
+                {
+                    id: 5,
+                    text: "When did World War II end?",
+                    options: ["1943", "1944", "1945", "1946"],
+                    correct: 2,
+                    topic: "World History"
+                }
+            ]
+        };
+
+        // All subjects for the full exam
+        const allSubjects = [
+            "Mathematics", "English", "Physics", "Chemistry", "Biology", 
+            "Economics", "Commerce", "Accounting", "Literature", "Government", "History"
+        ];
+
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Department selection
+        function selectDepartment(dept) {
+            appState.currentUser.department = dept;
+            document.getElementById('user-display').textContent = 
+                `${appState.currentUser.name} (${appState.currentUser.class} - ${dept.charAt(0).toUpperCase() + dept.slice(1)})`;
+            
+            document.getElementById('welcome-message').textContent = 
+                `Welcome back, ${appState.currentUser.name}! Here's your ${dept} department performance overview.`;
+            
+            showPage('dashboard');
+        }
+
+        // Start a subject test
+        function startSubjectTest(subject) {
+            appState.currentTest.type = "subject";
+            appState.currentTest.subject = subject;
+            appState.currentTest.questions = getRandomQuestions(questionBank[subject], 20);
+            appState.currentTest.currentQuestionIndex = 0;
+            appState.currentTest.userAnswers = new Array(appState.currentTest.questions.length).fill(null);
+            appState.currentTest.flaggedQuestions = new Array(appState.currentTest.questions.length).fill(false);
+            appState.currentTest.timeLeft = 60 * 60; // 1 hour in seconds
+            
+            initializeTest();
+            showPage('test');
+        }
+
+        // Start full exam with all 11 subjects
+        function startFullExam() {
+            appState.currentTest.type = "full";
+            appState.currentTest.subject = "Full Exam";
+            appState.currentTest.questions = [];
+            appState.currentTest.currentQuestionIndex = 0;
+            appState.currentTest.userAnswers = [];
+            appState.currentTest.flaggedQuestions = [];
+            appState.currentTest.timeLeft = 11 * 60 * 60; // 11 hours in seconds
+            
+            // Combine questions from all subjects
+            allSubjects.forEach(subject => {
+                const subjectQuestions = getRandomQuestions(questionBank[subject], 10);
+                appState.currentTest.questions = appState.currentTest.questions.concat(
+                    subjectQuestions.map(q => ({...q, subject: subject}))
+                );
+            });
+            
+            appState.currentTest.userAnswers = new Array(appState.currentTest.questions.length).fill(null);
+            appState.currentTest.flaggedQuestions = new Array(appState.currentTest.questions.length).fill(false);
+            
+            initializeTest();
+            showPage('test');
+        }
+
+        // Get random questions from a subject
+        function getRandomQuestions(questions, count) {
+            const shuffled = [...questions].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Initialize test interface
+        function initializeTest() {
+            // Set test title and info
+            document.getElementById('test-title').textContent = 
+                appState.currentTest.type === "full" ? "Full Exam (All Subjects)" : `${appState.currentTest.subject} Test`;
+            
+            document.getElementById('subject-info').textContent = 
+                appState.currentTest.type === "full" ? 
+                "All 11 Subjects | Time: 11 hours" : 
+                `Subject: ${appState.currentTest.subject} | Time: 60 minutes`;
+            
+            // Generate question navigation
+            const qNav = document.getElementById('q-navigation');
+            qNav.innerHTML = '';
+            
+            appState.currentTest.questions.forEach((q, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'question-nav-btn';
+                btn.textContent = index + 1;
+                btn.onclick = () => navigateToQuestion(index);
+                qNav.appendChild(btn);
+            });
+            
+            // Start timer
+            startTimer();
+            
+            // Load first question
+            loadQuestion(appState.currentTest.currentQuestionIndex);
+        }
+
+        // Timer function
+        function startTimer() {
+            // Clear any existing timer
+            if (appState.currentTest.timerInterval) {
+                clearInterval(appState.currentTest.timerInterval);
+            }
+            
+            const timerElement = document.getElementById('timer');
+            appState.currentTest.startTime = new Date();
+            
+            appState.currentTest.timerInterval = setInterval(() => {
+                if (appState.currentTest.timeLeft <= 0) {
+                    clearInterval(appState.currentTest.timerInterval);
+                    submitTest();
+                    return;
+                }
+                
+                const hours = Math.floor(appState.currentTest.timeLeft / 3600);
+                const minutes = Math.floor((appState.currentTest.timeLeft % 3600) / 60);
+                const seconds = appState.currentTest.timeLeft % 60;
+                
+                if (hours > 0) {
+                    timerElement.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                } else {
+                    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                }
+                
+                appState.currentTest.timeLeft--;
+            }, 1000);
+        }
+
+        // Load question
+        function loadQuestion(index) {
+            const question = appState.currentTest.questions[index];
+            document.getElementById('current-q').textContent = index + 1;
+            document.getElementById('total-qs').textContent = appState.currentTest.questions.length;
+            
+            let questionText = question.text;
+            if (appState.currentTest.type === "full") {
+                questionText = `[${question.subject}] ${questionText}`;
+            }
+            
+            document.getElementById('question-text').textContent = questionText;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, optIndex) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (appState.currentTest.userAnswers[index] === optIndex) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = String.fromCharCode(65 + optIndex) + '. ' + option;
+                optionElement.onclick = () => selectOption(optionElement, optIndex);
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            updateNavigation();
+        }
+
+        // Select option
+        function selectOption(element, index) {
+            // Remove selected class from all options
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Save answer
+            appState.currentTest.userAnswers[appState.currentTest.currentQuestionIndex] = index;
+            
+            // Update navigation
+            updateNavigation();
+        }
+
+        // Update question navigation
+        function updateNavigation() {
+            const navButtons = document.querySelectorAll('.question-nav-btn');
+            navButtons.forEach((btn, index) => {
+                btn.classList.remove('current', 'answered', 'flagged');
+                
+                if (index === appState.currentTest.currentQuestionIndex) {
+                    btn.classList.add('current');
+                }
+                
+                if (appState.currentTest.userAnswers[index] !== null) {
+                    btn.classList.add('answered');
+                }
+                
+                if (appState.currentTest.flaggedQuestions[index]) {
+                    btn.classList.add('flagged');
+                }
+            });
+        }
+
+        // Navigate to specific question
+        function navigateToQuestion(index) {
+            appState.currentTest.currentQuestionIndex = index;
+            loadQuestion(index);
+        }
+
+        // Navigate between questions
+        function navigateQuestion(direction) {
+            if (direction === 'prev' && appState.currentTest.currentQuestionIndex > 0) {
+                appState.currentTest.currentQuestionIndex--;
+            } else if (direction === 'next' && appState.currentTest.currentQuestionIndex < appState.currentTest.questions.length - 1) {
+                appState.currentTest.currentQuestionIndex++;
+            } else if (direction === 'next' && appState.currentTest.currentQuestionIndex === appState.currentTest.questions.length - 1) {
+                submitTest();
+                return;
+            }
+            
+            loadQuestion(appState.currentTest.currentQuestionIndex);
+        }
+
+        // Flag question
+        function flagQuestion() {
+            appState.currentTest.flaggedQuestions[appState.currentTest.currentQuestionIndex] = 
+                !appState.currentTest.flaggedQuestions[appState.currentTest.currentQuestionIndex];
+            updateNavigation();
+        }
+
+        // Submit test and calculate results
+        function submitTest() {
+            // Clear timer
+            if (appState.currentTest.timerInterval) {
+                clearInterval(appState.currentTest.timerInterval);
+            }
+            
+            // Calculate results
+            if (appState.currentTest.type === "full") {
+                calculateFullExamResults();
+            } else {
+                calculateSubjectResults();
+            }
+            
+            // Show pass/fail alert
+            showPassFailAlert();
+        }
+
+        // Calculate results for a single subject test
+        function calculateSubjectResults() {
+            let correct = 0;
+            appState.currentTest.userAnswers.forEach((answer, index) => {
+                if (answer === appState.currentTest.questions[index].correct) {
+                    correct++;
+                }
+            });
+            
+            const score = Math.round((correct / appState.currentTest.questions.length) * 100);
+            const passed = score >= 50;
+            
+            appState.examResults = {
+                subjects: [{
+                    name: appState.currentTest.subject,
+                    score: score,
+                    correct: correct,
+                    total: appState.currentTest.questions.length,
+                    passed: passed
+                }],
+                totalScore: score,
+                passed: passed
+            };
+        }
+
+        // Calculate results for full exam
+        function calculateFullExamResults() {
+            const subjectResults = {};
+            let totalCorrect = 0;
+            let totalQuestions = 0;
+            
+            // Calculate results per subject
+            appState.currentTest.questions.forEach((question, index) => {
+                const subject = question.subject;
+                if (!subjectResults[subject]) {
+                    subjectResults[subject] = {
+                        correct: 0,
+                        total: 0
+                    };
+                }
+                
+                subjectResults[subject].total++;
+                totalQuestions++;
+                
+                if (appState.currentTest.userAnswers[index] === question.correct) {
+                    subjectResults[subject].correct++;
+                    totalCorrect++;
+                }
+            });
+            
+            // Convert to array and calculate percentages
+            const subjectsArray = [];
+            let passedSubjects = 0;
+            
+            Object.keys(subjectResults).forEach(subject => {
+                const result = subjectResults[subject];
+                const score = Math.round((result.correct / result.total) * 100);
+                const passed = score >= 50;
+                
+                if (passed) passedSubjects++;
+                
+                subjectsArray.push({
+                    name: subject,
+                    score: score,
+                    correct: result.correct,
+                    total: result.total,
+                    passed: passed
+                });
+            });
+            
+            const overallScore = Math.round((totalCorrect / totalQuestions) * 100);
+            const overallPassed = overallScore >= 50 && passedSubjects >= 6; // Pass if overall >=50% and at least 6 subjects passed
+            
+            appState.examResults = {
+                subjects: subjectsArray,
+                totalScore: overallScore,
+                passed: overallPassed
+            };
+        }
+
+        // Show pass/fail alert
+        function showPassFailAlert() {
+            const alertBox = document.getElementById('passFailAlert');
+            const alertTitle = document.getElementById('alert-title');
+            const alertMessage = document.getElementById('alert-message');
+            
+            if (appState.examResults.passed) {
+                alertTitle.textContent = "Congratulations! You Passed!";
+                alertTitle.className = "pass";
+                alertMessage.textContent = `You scored ${appState.examResults.totalScore}% and have successfully passed the exam.`;
+            } else {
+                alertTitle.textContent = "Exam Failed";
+                alertTitle.className = "fail";
+                alertMessage.textContent = `You scored ${appState.examResults.totalScore}% which is below the passing mark. Please review and try again.`;
+            }
+            
+            alertBox.style.display = "flex";
+        }
+
+        // Close alert and show detailed results
+        function closeAlert() {
+            document.getElementById('passFailAlert').style.display = "none";
+            showDetailedResults();
+            showPage('results');
+        }
+
+        // Show detailed results
+        function showDetailedResults() {
+            // Set results description
+            document.getElementById('results-description').textContent = 
+                appState.currentTest.type === "full" ? 
+                "Here's how you performed in your full exam across all 11 subjects." :
+                `Here's how you performed in your ${appState.currentTest.subject} test.`;
+            
+            // Create score circle
+            const scoreCircle = document.getElementById('score-circle');
+            const percentage = appState.examResults.totalScore;
+            const passColor = appState.examResults.passed ? "#4cc9f0" : "#f72585";
+            
+            scoreCircle.innerHTML = `
+                <div class="score-inner">
+                    <div class="score-value">${percentage}%</div>
+                    <div class="score-label">Overall Score</div>
+                </div>
+            `;
+            
+            // Set gradient based on score
+            scoreCircle.style.background = `conic-gradient(${passColor} 0% ${percentage}%, #e9ecef ${percentage}% 100%)`;
+            
+            // Display subject results
+            const subjectResults = document.getElementById('subject-results');
+            subjectResults.innerHTML = '<h3>Subject-wise Results</h3>';
+            
+            appState.examResults.subjects.forEach(subject => {
+                const progressItem = document.createElement('div');
+                progressItem.className = 'progress-item';
+                
+                const progressFill = document.createElement('div');
+                progressFill.className = 'progress-fill';
+                progressFill.style.width = `${subject.score}%`;
+                progressFill.style.background = subject.passed ? 'var(--success)' : 'var(--danger)';
+                
+                progressItem.innerHTML = `
+                    <span>${subject.name}</span>
+                    <div class="progress-bar">${progressFill.outerHTML}</div>
+                    <span>${subject.score}% (${subject.correct}/${subject.total})</span>
+                `;
+                
+                subjectResults.appendChild(progressItem);
+            });
+            
+            // Set strong and weak subjects
+            const strongSubjects = appState.examResults.subjects
+                .filter(s => s.score >= 70)
+                .map(s => s.name)
+                .join(', ') || 'None';
+                
+            const weakSubjects = appState.examResults.subjects
+                .filter(s => s.score < 50)
+                .map(s => s.name)
+                .join(', ') || 'None';
+            
+            document.getElementById('strong-subjects').textContent = strongSubjects;
+            document.getElementById('weak-subjects').textContent = weakSubjects;
+        }
+
+        // Review test (placeholder function)
+        function reviewTest() {
+            alert('In the full version, this would show a detailed review of all questions with correct answers and explanations.');
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show welcome page by default
+            showPage('welcome');
+            
+            // Set up analytics page
+            initializeAnalytics();
+        });
+
+        // Initialize analytics page
+        function initializeAnalytics() {
+            // This would normally load from saved data
+            // For demo purposes, we'll use sample data
+            const analyticsContainer = document.querySelector('#analytics .subject-progress');
+            
+            allSubjects.forEach(subject => {
+                const randomScore = Math.floor(Math.random() * 40) + 30; // Random score between 30-70%
+                
+                const progressItem = document.createElement('div');
+                progressItem.className = 'progress-item';
+                
+                const progressFill = document.createElement('div');
+                progressFill.className = 'progress-fill';
+                progressFill.style.width = `${randomScore}%`;
+                progressFill.style.background = randomScore >= 50 ? 'var(--success)' : 'var(--danger)';
+                
+                progressItem.innerHTML = `
+                    <span>${subject}</span>
+                    <div class="progress-bar">${progressFill.outerHTML}</div>
+                    <span>${randomScore}%</span>
+                `;
+                
+                analyticsContainer.appendChild(progressItem);
+            });
+        }
+    </script>
+</body>
+</html>
