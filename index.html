@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skynet CBT - Computer Based Test</title>
+    <title>First term CBT Exams for Zenith Route High School</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
 
         :root {
             --primary: #2c3e50;
-            --secondary: #3498db;
+            --secondary: #f07828;
             --accent: #e74c3c;
             --light: #ecf0f1;
             --dark: #2c3e50;
@@ -489,8 +489,8 @@
     <header>
         <div class="container">
             <div class="logo-container">
-                <div class="logo">S</div>
-                <h1 class="app-title">Skynet CBT</h1>
+                <div class="logo">Z</div>
+                <h1 class="app-title">First term CBT Exams for Zenith Route High School</h1>
             </div>
         </div>
     </header>
@@ -738,37 +738,66 @@
         // Questions for all subjects (expanded to 30 questions each)
         const subjectQuestions = {
             "Mathematics": [
-                { id: 1, question: "What is the value of π (pi) to two decimal places?", options: { A: "3.14", B: "3.16", C: "3.12", D: "3.18" }, correctAnswer: "A" },
-                { id: 2, question: "Solve for x: 2x + 5 = 15", options: { A: "5", B: "10", C: "7.5", D: "8" }, correctAnswer: "A" },
-                { id: 3, question: "What is the area of a triangle with base 6cm and height 4cm?", options: { A: "10cm²", B: "12cm²", C: "24cm²", D: "18cm²" }, correctAnswer: "B" },
-                { id: 4, question: "If a = 3 and b = 4, what is the value of a² + b²?", options: { A: "7", B: "12", C: "25", D: "5" }, correctAnswer: "C" },
-                { id: 5, question: "What is 25% of 200?", options: { A: "25", B: "50", C: "75", D: "100" }, correctAnswer: "B" },
-                { id: 6, question: "Simplify: 3(x + 4) - 2(x - 1)", options: { A: "x + 14", B: "x + 10", C: "5x + 10", D: "5x + 14" }, correctAnswer: "A" },
-                { id: 7, question: "What is the next number in the sequence: 2, 4, 8, 16, ...?", options: { A: "24", B: "32", C: "20", D: "18" }, correctAnswer: "B" },
-                { id: 8, question: "Calculate: 7 × 8 ÷ 4 + 3", options: { A: "17", B: "14", C: "20", D: "19" }, correctAnswer: "A" },
-                { id: 9, question: "What is the square root of 144?", options: { A: "11", B: "12", C: "13", D: "14" }, correctAnswer: "B" },
-                { id: 10, question: "If a car travels 60km in 1 hour, how far will it travel in 2.5 hours?", options: { A: "120km", B: "150km", C: "180km", D: "200km" }, correctAnswer: "B" },
-                { id: 11, question: "What is the value of 5! (5 factorial)?", options: { A: "25", B: "60", C: "120", D: "720" }, correctAnswer: "C" },
-                { id: 12, question: "If a rectangle has length 8cm and width 5cm, what is its perimeter?", options: { A: "13cm", B: "26cm", C: "40cm", D: "30cm" }, correctAnswer: "B" },
-                { id: 13, question: "What is the sum of the angles in a triangle?", options: { A: "90°", B: "180°", C: "270°", D: "360°" }, correctAnswer: "B" },
-                { id: 14, question: "Solve: 3x - 7 = 14", options: { A: "x = 7", B: "x = 9", C: "x = 21", D: "x = 5" }, correctAnswer: "A" },
-                { id: 15, question: "What is 15% of 300?", options: { A: "15", B: "30", C: "45", D: "60" }, correctAnswer: "C" },
-                { id: 16, question: "If y = 2x + 3 and x = 4, what is y?", options: { A: "5", B: "7", C: "9", D: "11" }, correctAnswer: "D" },
-                { id: 17, question: "What is the area of a circle with radius 7cm? (Use π = 22/7)", options: { A: "44cm²", B: "154cm²", C: "308cm²", D: "616cm²" }, correctAnswer: "B" },
-                { id: 18, question: "Simplify: (2a + 3b) - (a - 2b)", options: { A: "a + 5b", B: "a + b", C: "3a + b", D: "a - b" }, correctAnswer: "A" },
-                { id: 19, question: "What is the median of: 3, 5, 7, 9, 11?", options: { A: "5", B: "7", C: "9", D: "6" }, correctAnswer: "B" },
-                { id: 20, question: "If 4x = 20, what is x?", options: { A: "4", B: "5", C: "6", D: "7" }, correctAnswer: "B" },
-                { id: 21, question: "What is the value of 3³?", options: { A: "9", B: "12", C: "27", D: "81" }, correctAnswer: "C" },
-                { id: 22, question: "If a train travels 120km in 2 hours, what is its speed?", options: { A: "40km/h", B: "60km/h", C: "80km/h", D: "100km/h" }, correctAnswer: "B" },
-                { id: 23, question: "What is the probability of getting heads when flipping a fair coin?", options: { A: "0.25", B: "0.5", C: "0.75", D: "1" }, correctAnswer: "B" },
-                { id: 24, question: "Solve: 2(x - 3) = 10", options: { A: "x = 8", B: "x = 6", C: "x = 5", D: "x = 4" }, correctAnswer: "A" },
-                { id: 25, question: "What is the perimeter of a square with side 6cm?", options: { A: "12cm", B: "18cm", C: "24cm", D: "36cm" }, correctAnswer: "C" },
-                { id: 26, question: "If 30% of a number is 45, what is the number?", options: { A: "135", B: "150", C: "165", D: "180" }, correctAnswer: "B" },
-                { id: 27, question: "What is the value of 8² - 6²?", options: { A: "4", B: "14", C: "28", D: "100" }, correctAnswer: "C" },
-                { id: 28, question: "If the ratio of boys to girls is 3:2 and there are 15 boys, how many girls are there?", options: { A: "5", B: "10", C: "15", D: "20" }, correctAnswer: "B" },
-                { id: 29, question: "What is the mean of: 4, 6, 8, 10, 12?", options: { A: "6", B: "7", C: "8", D: "9" }, correctAnswer: "C" },
-                { id: 30, question: "If a = 5 and b = 3, what is the value of 2a² - b²?", options: { A: "37", B: "41", C: "43", D: "47" }, correctAnswer: "B" }
-            ],
+                { id: 1, question: "Which of the following is the word, three trillion, one hundred and eighty-eight billion, five hundred and four thousand and twenty eight", options: { A: "3,188,504,028", B: "3,188,000,504,028", C: "3,000,188,504,028", D: "3,188,504,28" }, correctAnswer: "C" },
+
+{ id: 2, question: "A car travels 11km in 1 hour, how many km will it travel in 4 hours?", options: { A: "2.75km", B: "22km", C: "44km", D: "15km" }, correctAnswer: "C" },
+
+{ id: 3, question: "Add DCCIV and MCCLXXXV in roman numeral", options: { A: "MCMLXXXIX", B: "DLXXXI", C: "MCCCLIX", D: "MLXIX" }, correctAnswer: "A" },
+
+{ id: 4, question: "15km in metres is ?", options: { A: "150m", B: "1,500m", C: "15,000m", D: "150,000m" }, correctAnswer: "C" },
+
+{ id: 5, question: "Divide 0.45 by 0.025", options: { A: "18", B: "1.8", C: "0.8", D: "0.01125" }, correctAnswer: "A" },
+
+{ id: 6, question: "Simplify ⅘ × (10 + 15) × ½", options: { A: "34", B: "10", C: "15", D: "17½" }, correctAnswer: "B" },
+
+{ id: 7, question: "Multiply 15 by 44 and give answer in roman numeral", options: { A: "DCLX", B: "CDLXX", C: "LXVI", D: "DCVI" }, correctAnswer: "A" },
+
+{ id: 8, question: "Simplify 9 + 4 × (2 × 7) + 1¾", options: { A: "66½", B: "66³⁄₉", C: "66¾", D: "66⁵⁄₇" }, correctAnswer: "C" },
+
+{ id: 9, question: "A boy spent ⅖ of his money and had 180 naira left, how much was his money", options: { A: "72 naira", B: "300 naira", C: "180 naira", D: "180.4 naira" }, correctAnswer: "B" },
+
+{ id: 10, question: "Write the index of 32", options: { A: "2⁵", B: "2⁴", C: "2⁶", D: "2³" }, correctAnswer: "A" },
+
+{ id: 11, question: "What fraction of 1200 naira is 300 naira", options: { A: "¼", B: "⅓", C: "½", D: "⅕" }, correctAnswer: "A" },
+
+{ id: 12, question: "Convert 2 hours 45 minutes to minutes", options: { A: "120min", B: "135min", C: "150min", D: "165min" }, correctAnswer: "D" },
+
+{ id: 13, question: "A student buys 4 pens at 250 naira each and a book for 900 naira, estimate the total to the nearest hundred", options: { A: "1500 naira", B: "1900 naira", C: "2000 naira", D: "2500 naira" }, correctAnswer: "C" },
+
+{ id: 14, question: "Add 10101 base 2 and 1101 base 2", options: { A: "11110 base 2", B: "100110 base 2", C: "100010 base 2", D: "11000 base 2" }, correctAnswer: "B" },
+
+{ id: 15, question: "A trader bought a bag of rice for 24,000 naira and sold it for 27,600. What is the percentage profit", options: { A: "10%", B: "12%", C: "15%", D: "20%" }, correctAnswer: "C" },
+
+{ id: 16, question: "Simplify 1.5 + ⅔ × 4.5 - 3/10", options: { A: "3.7", B: "4.5", C: "4.2", D: "5.5" }, correctAnswer: "A" },
+
+{ id: 17, question: "A trader mixes 2½ kg of sugar with 1.75kg of salt, if the mixture costs 1,800 naira in total, what is the cost per kg?", options: { A: "400 naira", B: "450 naira", C: "360 naira", D: "320 naira" }, correctAnswer: "B" },
+
+{ id: 18, question: "Find the LCM of 8, 12 and 20", options: { A: "120", B: "60", C: "240", D: "48" }, correctAnswer: "A" },
+
+{ id: 19, question: "Increase 450 naira by 12%", options: { A: "500 naira", B: "504 naira", C: "510 naira", D: "520 naira" }, correctAnswer: "B" },
+
+{ id: 20, question: "A dress that costs 8,000 naira is reduced by 15%, find the selling price", options: { A: "6,800 naira", B: "6,500 naira", C: "6,400 naira", D: "6,900 naira" }, correctAnswer: "A" },
+
+{ id: 21, question: "Convert 45 base 10 to base 2", options: { A: "101101", B: "110010", C: "101011", D: "111001" }, correctAnswer: "A" },
+
+{ id: 22, question: "Convert 10110 base 2 to base 10", options: { A: "20", B: "21", C: "22", D: "23" }, correctAnswer: "C" },
+
+{ id: 23, question: "Three hundred and thirty billion, one million and fifty five in figures is", options: { A: "330,155,000,000", B: "330,100,000,550", C: "330,001,000,055", D: "330,155,000" }, correctAnswer: "C" },
+
+{ id: 24, question: "Change 15.2317 to 2.d.p", options: { A: "15.232", B: "15", C: "15.23", D: "15.24" }, correctAnswer: "C" },
+
+{ id: 25, question: "If bright reads for 2 hours everyday, how many hours will he read for in 2 weeks?", options: { A: "30 hours", B: "28 hours", C: "48 hours", D: "14 hours" }, correctAnswer: "B" },
+
+{ id: 26, question: "If destiny was give 2 litres of water and was asked to pour it into bottles that will contain exactly 20cl of the water, how many bottles will destiny need to pour all litres of water?", options: { A: "40 bottles", B: "10 bottles", C: "22 bottles", D: "2 bottles" }, correctAnswer: "B" },
+
+{ id: 27, question: "Arrange the following in ascending order, ⅔, 0.01, ½, 5/7, 2.5, 1¾", options: { A: "0.01, ½, ⅔, 5/7, 1¾, 2.5", B: "½, 0.01, ⅔, 1¾, 5/7, 2.5", C: "0.01, ⅔, 1¾, ½, 2.5, 5/7", D: "0.01, 2.5, 5/7, 1¾, ⅔, ½" }, correctAnswer: "A" },
+
+{ id: 28, question: "If bright shares the total hours used to play a game every weekend equally with his two brothers and on Saturday they spent 4 hours 30 minutes playing game, how many hours did Bright spend playing game on Saturday?", options: { A: "9 hours", B: "12 hours 30 minutes", C: "1 hour 30 minutes", D: "2hours 15minutes" }, correctAnswer: "C" },
+
+{ id: 29, question: "Round 0.004562 to 2 significant figures", options: { A: "0.0046", B: "0.0045", C: "0.00456", D: "0.004" }, correctAnswer: "A" },
+
+{ id: 30, question: "A school hall has 48 benches and each bench Seats about 5 students. During an event, 8 benches were removed to make space for the stage. Estimate how many students can still sit in the hall.", options: { A: "200", B: "400", C: "240", D: "280" }, correctAnswer: "A" }
+        ],
             "English Language": [
                 { id: 1, question: "Which of these is a noun?", options: { A: "run", B: "beautiful", C: "quickly", D: "teacher" }, correctAnswer: "D" },
                 { id: 2, question: "Choose the correct spelling:", options: { A: "acomodate", B: "acommodate", C: "accommodate", D: "acommodatte" }, correctAnswer: "C" },
@@ -801,7 +830,7 @@
                 { id: 29, question: "Which sentence is a question?", options: { A: "I am going to the store", B: "Go to the store", C: "Are you going to the store?", D: "What a beautiful day" }, correctAnswer: "C" },
                 { id: 30, question: "What is the meaning of 'ambiguous'?", options: { A: "clear", B: "uncertain", C: "happy", D: "sad" }, correctAnswer: "B" }
             ],
-            "Digital Technology": [
+            "Computer Studies": [
                 { id: 1, question: "ICT is an acronym for…", options: { A: "International Communication Technology", B: "Information and Communication Technology", C: "Internet and Computer Technology", D: "Internal Communication Tools" }, correctAnswer: "B" },
                 { id: 2, question: "Which of the following is NOT a component of ICT?", options: { A: "Television", B: "Radio", C: "A wooden chair", D: "Computer" }, correctAnswer: "C" },
                 { id: 3, question: "The brain of the computer is called the…", options: { A: "Monitor", B: "Central Processing Unit (CPU)", C: "Keyboard", D: "Mouse" }, correctAnswer: "B" },
@@ -962,37 +991,68 @@
                 { id: 30, question: "Choose the opposite of 'petite'", options: { A: "longue", B: "grande", C: "courte" }, correctAnswer: "B" }
             ],
             "Basic Science": [
-                { id: 1, question: "Which of these is a living thing?", options: { A: "Rock", B: "Water", C: "Plant", D: "Air" }, correctAnswer: "C" },
-                { id: 2, question: "What is the main source of energy for the Earth?", options: { A: "Moon", B: "Stars", C: "Sun", D: "Wind" }, correctAnswer: "C" },
-                { id: 3, question: "Which organ is responsible for pumping blood in the human body?", options: { A: "Lungs", B: "Heart", C: "Liver", D: "Kidney" }, correctAnswer: "B" },
-                { id: 4, question: "What do plants need for photosynthesis?", options: { A: "Water, sunlight, and carbon dioxide", B: "Soil, water, and oxygen", C: "Fertilizer, soil, and water", D: "Sunlight, oxygen, and soil" }, correctAnswer: "A" },
-                { id: 5, question: "Which of these is a renewable energy source?", options: { A: "Coal", B: "Oil", C: "Solar power", D: "Natural gas" }, correctAnswer: "C" },
-                { id: 6, question: "What is the process by which plants make their own food called?", options: { A: "Respiration", B: "Digestion", C: "Photosynthesis", D: "Transpiration" }, correctAnswer: "C" },
-                { id: 7, question: "Which of these is NOT a sense organ?", options: { A: "Eyes", B: "Ears", C: "Skin", D: "Heart" }, correctAnswer: "D" },
-                { id: 8, question: "What is the smallest unit of life?", options: { A: "Tissue", B: "Organ", C: "Cell", D: "Molecule" }, correctAnswer: "C" },
-                { id: 9, question: "Which gas do humans breathe in?", options: { A: "Carbon dioxide", B: "Oxygen", C: "Nitrogen", D: "Helium" }, correctAnswer: "B" },
-                { id: 10, question: "What is the force that pulls objects toward the center of the Earth?", options: { A: "Magnetism", B: "Friction", C: "Gravity", D: "Inertia" }, correctAnswer: "C" },
-                { id: 11, question: "Which of these is a simple machine?", options: { A: "Computer", B: "Lever", C: "Car", D: "Bicycle" }, correctAnswer: "B" },
-                { id: 12, question: "What is the process of a liquid turning into a gas called?", options: { A: "Freezing", B: "Melting", C: "Evaporation", D: "Condensation" }, correctAnswer: "C" },
-                { id: 13, question: "Which of these is a vertebrate?", options: { A: "Spider", B: "Fish", C: "Snail", D: "Insect" }, correctAnswer: "B" },
-                { id: 14, question: "What is the main function of the roots of a plant?", options: { A: "To make food", B: "To absorb water and nutrients", C: "To attract insects", D: "To produce flowers" }, correctAnswer: "B" },
-                { id: 15, question: "Which of these is a non-renewable resource?", options: { A: "Wind", B: "Sunlight", C: "Coal", D: "Water" }, correctAnswer: "C" },
-                { id: 16, question: "What is the chemical symbol for water?", options: { A: "O2", B: "CO2", C: "H2O", D: "NaCl" }, correctAnswer: "C" },
-                { id: 17, question: "Which planet is known as the Red Planet?", options: { A: "Venus", B: "Mars", C: "Jupiter", D: "Saturn" }, correctAnswer: "B" },
-                { id: 18, question: "What is the process of a solid turning into a liquid called?", options: { A: "Freezing", B: "Melting", C: "Evaporation", D: "Condensation" }, correctAnswer: "B" },
-                { id: 19, question: "Which of these is a source of protein?", options: { A: "Rice", B: "Bread", C: "Meat", D: "Potato" }, correctAnswer: "C" },
-                { id: 20, question: "What is the main function of the skeletal system?", options: { A: "To digest food", B: "To provide support and protection", C: "To transport oxygen", D: "To remove waste" }, correctAnswer: "B" },
-                { id: 21, question: "Which of these is a communicable disease?", options: { A: "Malaria", B: "Diabetes", C: "Cancer", D: "Asthma" }, correctAnswer: "A" },
-                { id: 22, question: "What is the unit of measurement for electric current?", options: { A: "Volt", B: "Watt", C: "Ampere", D: "Ohm" }, correctAnswer: "C" },
-                { id: 23, question: "Which of these is a conductor of electricity?", options: { A: "Rubber", B: "Wood", C: "Copper", D: "Plastic" }, correctAnswer: "C" },
-                { id: 24, question: "What is the process of a gas turning into a liquid called?", options: { A: "Freezing", B: "Melting", C: "Evaporation", D: "Condensation" }, correctAnswer: "D" },
-                { id: 25, question: "Which of these is a greenhouse gas?", options: { A: "Oxygen", B: "Nitrogen", C: "Carbon dioxide", D: "Helium" }, correctAnswer: "C" },
-                { id: 26, question: "What is the main function of chlorophyll in plants?", options: { A: "To absorb sunlight", B: "To absorb water", C: "To produce seeds", D: "To attract insects" }, correctAnswer: "A" },
-                { id: 27, question: "Which of these is a method of preventing soil erosion?", options: { A: "Deforestation", B: "Overgrazing", C: "Planting trees", D: "Burning vegetation" }, correctAnswer: "C" },
-                { id: 28, question: "What is the process by which plants lose water through their leaves?", options: { A: "Photosynthesis", B: "Respiration", C: "Transpiration", D: "Digestion" }, correctAnswer: "C" },
-                { id: 29, question: "Which of these is a fossil fuel?", options: { A: "Solar energy", B: "Wind energy", C: "Natural gas", D: "Hydroelectric power" }, correctAnswer: "C" },
-                { id: 30, question: "What is the main function of white blood cells?", options: { A: "To carry oxygen", B: "To fight infection", C: "To clot blood", D: "To digest food" }, correctAnswer: "B" }
+                   { id: 1, question: "Which of these is not a gas", options: { A: "Mercury", B: "Hydrogen", C: "Steam", D: "Smoke" }, correctAnswer: "A" },
+
+{ id: 2, question: "Which of these is not a characteristic of living things", options: { A: "Nutrition", B: "Movement", C: "Dancing", D: "Irritability/sensitivity" }, correctAnswer: "C" },
+
+{ id: 3, question: "Anything that has weight and can occupy space is referred to as _____?", options: { A: "Living things", B: "Non living things", C: "Matter", D: "Atoms" }, correctAnswer: "C" },
+
+{ id: 4, question: "Which of these is a characteristic of a liquid", options: { A: "It is colourless", B: "It has a definite shape", C: "It has a definite volume", D: "The particles are very tightly packed together" }, correctAnswer: "C" },
+
+{ id: 5, question: "Which of these is a sign of maturity in boys", options: { A: "Their hair becomes longer", B: "They develop deeper voice", C: "They grow shorter", D: "They swim faster" }, correctAnswer: "B" },
+
+{ id: 6, question: "The act of keeping ourselves and surrounding clean refers to _____?", options: { A: "Personal hygiene", B: "Environmental hygiene", C: "Adolescence", D: "Puberty" }, correctAnswer: "B" },
+
+{ id: 7, question: "___ is described as the act of taking in food which provides nourishment and nutrients to the body", options: { A: "Feeding", B: "Eating", C: "Nutrition", D: "Nutrients" }, correctAnswer: "C" },
+
+{ id: 8, question: "Which of the following has both definite shape and volume", options: { A: "Gas", B: "Solid", C: "Liquid", D: "Matter" }, correctAnswer: "B" },
+
+{ id: 9, question: "Which of these is a state of matter", options: { A: "Element", B: "Compound", C: "Mixture", D: "Solid" }, correctAnswer: "D" },
+
+{ id: 10, question: "The ability of a liquid to take the shape of its container is because ____?", options: { A: "Has a definite shape", B: "Has a definite volume", C: "Has no definite shape", D: "It is watery" }, correctAnswer: "C" },
+
+{ id: 11, question: "The ability of living organisms to remove waste product of metabolism from their body is referred to as ____?", options: { A: "Growth", B: "Excretion", C: "Irritability", D: "Competition" }, correctAnswer: "B" },
+
+{ id: 12, question: "Food rich in protein helps mainly in ___?", options: { A: "Body building", B: "Energy Giving", C: "Protection", D: "Digestion" }, correctAnswer: "A" },
+
+{ id: 13, question: "Which of these foods contains carbohydrate", options: { A: "Fish", B: "Beans", C: "Banana", D: "Rice" }, correctAnswer: "D" },
+
+{ id: 14, question: "Water helps the body by ____?", options: { A: "Regulating body temperature", B: "Digestion", C: "Giving colour to the skin", D: "Stops you from being thirsty" }, correctAnswer: "A" },
+
+{ id: 15, question: "Poor sanitation can lead to ____?", options: { A: "Malaria", B: "Exercise", C: "Growth", D: "Healthy living" }, correctAnswer: "A" },
+
+{ id: 16, question: "One way to keep the environment clean is to ____?", options: { A: "Burning plastics", B: "Littering", C: "Using dustbins", D: "Living wastewater open" }, correctAnswer: "C" },
+
+{ id: 17, question: "The organ in the female where the baby develops is the ____?", options: { A: "Uterus", B: "Fallopian tubes", C: "Ovary", D: "Kidneys" }, correctAnswer: "A" },
+
+{ id: 18, question: "Which of the following is not a reproductive organ ____?", options: { A: "Ovary", B: "Testes", C: "Liver", D: "Uterus" }, correctAnswer: "C" },
+
+{ id: 19, question: "The joining of the sperm and egg is called ____.", options: { A: "Reproduction", B: "Fertilization", C: "Menstruation", D: "Excretion" }, correctAnswer: "B" },
+
+{ id: 20, question: "Fertilization in humans takes place in the ____.", options: { A: "Uterus", B: "Liver", C: "Fallopian tube", D: "Large intestine" }, correctAnswer: "C" },
+
+{ id: 21, question: "Brushing the teeth is recommended at least ____.", options: { A: "Once a week", B: "Once a day", C: "Twice a day", D: "Only at night" }, correctAnswer: "C" },
+
+{ id: 22, question: "Which of the following is a physical change in girls?", options: { A: "Broad shoulders", B: "Beard growth", C: "Menstruation begins", D: "Voice becomes deep" }, correctAnswer: "C" },
+
+{ id: 23, question: "Animals take in oxygen and release carbon dioxide. This process is ____.", options: { A: "Breathing", B: "Growth", C: "Excretion", D: "Reproduction" }, correctAnswer: "A" },
+
+{ id: 24, question: "A plant bending towards sunlight shows ____.", options: { A: "Respiration", B: "Sensitivity", C: "Growth", D: "Excretion" }, correctAnswer: "B" },
+
+{ id: 25, question: "A plant is classified as a living thing because it ____.", options: { A: "Is green", B: "Can be eaten", C: "Breathes and grows", D: "Stays in one place" }, correctAnswer: "C" },
+
+{ id: 26, question: "The nutrient needed for strong bones and teeth is ____.", options: { A: "Protein", B: "Vitamins", C: "Iron", D: "Calcium" }, correctAnswer: "D" },
+
+{ id: 27, question: "Kwashiorkor is caused by lack of ____.", options: { A: "Carbohydrates", B: "Proteins", C: "Vitamins", D: "Fats" }, correctAnswer: "B" },
+
+{ id: 28, question: "Fruits and vegetables are good sources of ____.", options: { A: "Proteins", B: "Vitamins", C: "Fats", D: "Sugar" }, correctAnswer: "B" },
+
+{ id: 29, question: "Matter is made up of ____?", options: { A: "Atoms", B: "Irons", C: "Living things", D: "Non living things" }, correctAnswer: "A" },
+
+{ id: 30, question: "Which of these is a non metal", options: { A: "Calcium", B: "Zinc", C: "Aluminium", D: "Neon" }, correctAnswer: "D" }
+
             ],
+               
             "Social Studies": [
                 { id: 1, question: "What is the study of human society and social relationships called?", options: { A: "Biology", B: "Geography", C: "Social Studies", D: "Mathematics" }, correctAnswer: "C" },
                 { id: 2, question: "Which of these is a component of social studies?", options: { A: "History", B: "Geography", C: "Civic Education", D: "All of the above" }, correctAnswer: "D" },
@@ -1024,7 +1084,130 @@
                 { id: 28, question: "Which of these is a type of citizenship?", options: { A: "Citizenship by birth", B: "Citizenship by naturalization", C: "Citizenship by registration", D: "All of the above" }, correctAnswer: "D" },
                 { id: 29, question: "What is the study of the production, distribution, and consumption of goods and services called?", options: { A: "Politics", B: "Economics", C: "Sociology", D: "Anthropology" }, correctAnswer: "B" },
                 { id: 30, question: "Which of these is a type of social problem?", options: { A: "Poverty", B: "Unemployment", C: "Crime", D: "All of the above" }, correctAnswer: "D" }
-            ]
+            ],
+            "creative Arts": [
+                { id: 1, question: "The branch of art that involves acting, dancing, and singing is known as", options: { A: "Performing Arts", B: "Literary Arts", C: "Visual Arts", D: "Fine Arts" }, correctAnswer: "A" },
+
+{ id: 2, question: "Someone who writes drama scripts is called a", options: { A: "Novelist", B: "Dramatist", C: "Musician", D: "Artist" }, correctAnswer: "B" },
+
+{ id: 3, question: "The arrangement of sounds that are pleasant to the ear is called", options: { A: "Noise", B: "Music", C: "Sound", D: "Melody" }, correctAnswer: "B" },
+
+{ id: 4, question: "Fine Art is a branch of", options: { A: "Visual Arts", B: "Performing Arts", C: "Applied Arts", D: "Literary Arts" }, correctAnswer: "A" },
+
+{ id: 5, question: "The word music originated from a ___ word.", options: { A: "Latin", B: "Greek", C: "French", D: "Roman" }, correctAnswer: "B" },
+
+{ id: 6, question: "The drawing of lifeless objects such as bottles and fruits is called", options: { A: "Nature drawing", B: "Still life drawing", C: "Imaginative drawing", D: "Figure drawing" }, correctAnswer: "B" },
+
+{ id: 7, question: "The first step in making paper maché is", options: { A: "Painting the object", B: "Soaking paper in water", C: "Applying starch", D: "Cutting the paper into shapes" }, correctAnswer: "B" },
+
+{ id: 8, question: "A person who performs in a play is known as", options: { A: "Dramatist", B: "Director", C: "Actor", D: "Crew member" }, correctAnswer: "C" },
+
+{ id: 9, question: "The word art originated from a ___ word.", options: { A: "Latin", B: "English", C: "Greek", D: "American" }, correctAnswer: "A" },
+
+{ id: 10, question: "In Africa, music reflects in all human ___.", options: { A: "Works", B: "Activities", C: "Education", D: "Religion" }, correctAnswer: "B" },
+
+{ id: 11, question: "Which of the following is not a principle of design?", options: { A: "Rhythm", B: "Balance", C: "Texture", D: "Alphabet" }, correctAnswer: "D" },
+
+{ id: 12, question: "The process of decorating a calabash belongs to", options: { A: "Textile design", B: "Graphics", C: "Craft", D: "Painting" }, correctAnswer: "C" },
+
+{ id: 13, question: "The study of Cultural and Creative Arts helps us to understand", options: { A: "The total way of life of the people", B: "Only musical skills", C: "Foreign traditions", D: "Religious studies" }, correctAnswer: "A" },
+
+{ id: 14, question: "The alphabet used in musical notation consists of", options: { A: "4 letters", B: "5 letters", C: "7 letters", D: "8 letters" }, correctAnswer: "C" },
+
+{ id: 15, question: "The principle of art that deals with equal distribution of visual weight is", options: { A: "Rhythm", B: "Balance", C: "Emphasis", D: "Repetition" }, correctAnswer: "B" },
+
+{ id: 16, question: "Art can best be described as", options: { A: "Expression of human feelings and ideas", B: "The study of colours only", C: "The making of sound", D: "Acting on stage" }, correctAnswer: "A" },
+
+{ id: 17, question: "One of the following is not a geometric shape.", options: { A: "Triangle", B: "Square", C: "Ball", D: "Rectangle" }, correctAnswer: "C" },
+
+{ id: 18, question: "Which of the following is an element of design?", options: { A: "Tone", B: "Emotion", C: "Colour", D: "Talent" }, correctAnswer: "C" },
+
+{ id: 19, question: "The branch of art that appeals to man's sense of beauty and emotion is", options: { A: "Fine Art", B: "Graphic Art", C: "Applied Art", D: "Craft" }, correctAnswer: "A" },
+
+{ id: 20, question: "Music is a division of", options: { A: "Visual Art", B: "Performing Art", C: "Drawing Art", D: "Textile Art" }, correctAnswer: "B" },
+
+{ id: 21, question: "A literary art form that expresses ideas and emotions in verse is", options: { A: "Prose", B: "Painting", C: "Poetry", D: "Sculpture" }, correctAnswer: "C" },
+
+{ id: 22, question: "The surface quality of an object is called", options: { A: "Line", B: "Texture", C: "Shape", D: "Pattern" }, correctAnswer: "B" },
+
+{ id: 23, question: "The act of working together towards a common goal is called", options: { A: "Tolerance", B: "Friendship", C: "Teamwork", D: "Hard work" }, correctAnswer: "C" },
+
+{ id: 24, question: "Which of the following is a principle of design?", options: { A: "Contrast", B: "Colour", C: "Shape", D: "Texture" }, correctAnswer: "A" },
+
+{ id: 25, question: "The function of drama that gives information is called", options: { A: "Entertainment", B: "Informative", C: "Persuasive", D: "Emotional" }, correctAnswer: "B" },
+
+{ id: 26, question: "A person who paints pictures is called a", options: { A: "Sculptor", B: "Painter", C: "Actor", D: "Designer" }, correctAnswer: "B" },
+
+{ id: 27, question: "Which of the following is a branch of Applied Arts?", options: { A: "Ceramics", B: "Drawing", C: "Still life", D: "Colouring" }, correctAnswer: "A" },
+
+{ id: 28, question: "Tragedy and comedy are both types of", options: { A: "Music", B: "Sculpture", C: "Drama", D: "Dance" }, correctAnswer: "C" },
+
+{ id: 29, question: "___ refers to the repetition of elements to create movement in art.", options: { A: "Emphasis", B: "Rhythm", C: "Variety", D: "Harmony" }, correctAnswer: "B" },
+
+{ id: 30, question: "The process of making useful objects that are beautiful is called", options: { A: "Craft", B: "Fine Art", C: "Drama", D: "Sculpture" }, correctAnswer: "A" }
+        ],
+        "Agricultural Science":[
+            { id: 1, question: "Agriculture was coined from two Latin words which are ……………", options: { A: "Agri and ture", B: "Agers and cultura", C: "Agro and nature", D: "Agric and tural" }, correctAnswer: "B" },
+
+{ id: 2, question: "Agriculture started by accident about ………….. years ago", options: { A: "10,000", B: "15,000", C: "25,000", D: "150,000" }, correctAnswer: "A" },
+
+{ id: 3, question: "One of the importance of agriculture to the farmer and society is …………….", options: { A: "Education", B: "Medicinal purpose", C: "Labour purpose", D: "Entertainment purpose" }, correctAnswer: "B" },
+
+{ id: 4, question: "Agriculture provides all of these except", options: { A: "Revenue", B: "Shelter", C: "Religion", D: "Employment" }, correctAnswer: "C" },
+
+{ id: 5, question: "……….. is the study of how to grow fruits, Vegetables and ornamental plants", options: { A: "Crop farming", B: "Livestock farming", C: "Horticulture", D: "Florist" }, correctAnswer: "C" },
+
+{ id: 6, question: "………. Is an unsettled form of farm animals", options: { A: "Ranching", B: "Nomadic herding", C: "API culture", D: "Unsettled rearing" }, correctAnswer: "B" },
+
+{ id: 7, question: "There are…….types of bees", options: { A: "5", B: "2", C: "3", D: "4" }, correctAnswer: "C" },
+
+{ id: 8, question: "…… has one queen, about 300 workers and a few drone", options: { A: "Solitary bees", B: "Bombus bumble bees", C: "Psithyras or cackoo bumble bees", D: "Honey making bee" }, correctAnswer: "B" },
+
+{ id: 9, question: "Honey bees have about …….female workers", options: { A: "50,000", B: "1000", C: "500", D: "10,000" }, correctAnswer: "A" },
+
+{ id: 10, question: "Snails are ……..", options: { A: "Invertebrates", B: "Mammals", C: "Vertebrate", D: "Mammals" }, correctAnswer: "A" },
+
+{ id: 11, question: "Snails are source of………", options: { A: "Carbohydrates", B: "Vitamins", C: "Fats", D: "Iron" }, correctAnswer: "D" },
+
+{ id: 12, question: "The incubation period for snail eggs is ………", options: { A: "14 days", B: "23 days", C: "31 days", D: "29 days" }, correctAnswer: "C" },
+
+{ id: 13, question: "Fishes are……. animals", options: { A: "Terrestrial", B: "Aquatic", C: "Carnivorous", D: "Oviviparous" }, correctAnswer: "B" },
+
+{ id: 14, question: "One of the conditions for establishment of fish pond is …….", options: { A: "Adequate water", B: "Adequate flakes supply", C: "Sun", D: "Fishing net" }, correctAnswer: "A" },
+
+{ id: 15, question: "Fishing gourd is mostly used in the …….. part of Nigeria", options: { A: "Western", B: "Eastern", C: "Northern", D: "Southern" }, correctAnswer: "C" },
+
+{ id: 16, question: "Flowering plants can be divided into …… parts", options: { A: "2", B: "3", C: "4", D: "6" }, correctAnswer: "A" },
+
+{ id: 17, question: "……….. manufactures food to different parts of the plant", options: { A: "Root", B: "Stem", C: "Leaf", D: "Branch" }, correctAnswer: "C" },
+
+{ id: 18, question: "There are…….. plants forms", options: { A: "3", B: "4", C: "2", D: "5" }, correctAnswer: "C" },
+
+{ id: 19, question: "………..has two seed leaves or cotyledons", options: { A: "Bicot plants", B: "Monocot plants", C: "Dicot plants", D: "Apricot plants" }, correctAnswer: "C" },
+
+{ id: 20, question: "Plants that live for many years before they die are called ………", options: { A: "Annual crops", B: "Biennial crops", C: "Lingual crops", D: "Perennial crops" }, correctAnswer: "D" },
+
+{ id: 21, question: "…….. are crops which complete their life cycle within one year or season", options: { A: "Perennial crops", B: "Annual crops", C: "Biennial crops", D: "Ornamental crops" }, correctAnswer: "B" },
+
+{ id: 22, question: "Forage are crops grown for……..", options: { A: "Making clothes", B: "Beautifying environment", C: "Feeding farm animals", D: "Manuring the farm" }, correctAnswer: "C" },
+
+{ id: 23, question: "Lack of vitamins can cause……..", options: { A: "Anemia", B: "Malaria", C: "Typhoid", D: "Disease" }, correctAnswer: "A" },
+
+{ id: 24, question: "……….is an animal which causes damage to crops or livestock.", options: { A: "Insect", B: "Reptile", C: "Pest", D: "Rodent" }, correctAnswer: "C" },
+
+{ id: 25, question: "There is …… in the north", options: { A: "Low humidity", B: "Moderate humidity", C: "High humidity", D: "Temperate humidity" }, correctAnswer: "A" },
+
+{ id: 26, question: "Pest can be grouped into ……….. and……….", options: { A: "Insect and rodent", B: "Flies and worms", C: "Insect and non-insect", D: "Predators and fry" }, correctAnswer: "C" },
+
+{ id: 27, question: "One of the effects of pest is that……..", options: { A: "Pollinate flowers", B: "Transmit diseases from one plant to another", C: "Store foods in plants", D: "Increases high yield in plant" }, correctAnswer: "B" },
+
+{ id: 28, question: "Classification of crops based on food nutrients are grouped into…….", options: { A: "5", B: "4", C: "7", D: "6" }, correctAnswer: "D" },
+
+{ id: 29, question: "Non-insects are ………. and ………", options: { A: "Grasshoppers and locusts", B: "Mammals and birds", C: "Butterflies and bugs", D: "Earthworm and reptiles" }, correctAnswer: "B" },
+
+{ id: 30, question: "Fibre crops are grown for making ……….", options: { A: "Shoes", B: "Clothes", C: "Beverages", D: "Cereals" }, correctAnswer: "B" }
+        ]
+
             // Additional subjects would continue here...
         };
 
@@ -1038,7 +1221,7 @@
             for (let i = 1; i <= 30; i++) {
                 defaultQuestions.push({
                     id: i,
-                    question: `Question ${i}: What is the main focus of ${subjectName}?`,
+                    question: `Question ${i} ${subjectName}?`,
                     options: {
                         A: "Theory and concepts",
                         B: "Practical applications",
