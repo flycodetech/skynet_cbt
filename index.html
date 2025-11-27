@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First term CBT Exams for Zenith Route High School</title>
+    <title>Zenith Route High School - CBT Exams</title>
     <style>
         * {
             margin: 0;
@@ -13,17 +13,17 @@
         }
 
         :root {
-            --primary: #2c3e50;
-            --secondary: #f07828;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --art: #9b59b6;
-            --science: #3498db;
-            --commercial: #e67e22;
+            --primary: #1a237e; /* Deep blue */
+            --secondary: #d32f2f; /* Red */
+            --accent: #ffffff; /* White */
+            --light: #f5f5f5;
+            --dark: #1a237e;
+            --success: #2e7d32;
+            --warning: #ff8f00;
+            --danger: #c62828;
+            --art: #7b1fa2;
+            --science: #0277bd;
+            --commercial: #ef6c00;
         }
 
         body {
@@ -55,8 +55,8 @@
         }
 
         .logo {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             background-color: white;
             border-radius: 50%;
             display: flex;
@@ -64,13 +64,18 @@
             justify-content: center;
             font-weight: bold;
             color: var(--primary);
-            font-size: 24px;
+            font-size: 14px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 5px;
+            line-height: 1.2;
+            border: 2px solid var(--secondary);
         }
 
         .app-title {
             font-size: 28px;
             font-weight: 700;
+            text-align: center;
         }
 
         .card {
@@ -489,7 +494,11 @@
     <header>
         <div class="container">
             <div class="logo-container">
-                <div class="logo">Z</div>
+                <div class="logo">
+                    <div>Zenith</div>
+                    <div>Route</div>
+                    <div>Academy</div>
+                </div>
                 <h1 class="app-title">First term CBT Exams for Zenith Route High School</h1>
             </div>
         </div>
@@ -556,7 +565,7 @@
             
             <ul>
                 <li>You will be tested on subjects relevant to your class and department.</li>
-                <li>Each subject has 30 questions to be completed in 30 minutes (45 minutes for Mathematics).</li>
+                <li>Each subject has 30 questions to be completed in 50 minutes (80 minutes for Mathematics).</li>
                 <li>The exam is divided into multiple sections.</li>
                 <li>You must complete all subjects before your result can be generated.</li>
                 <li>Your result will be available for printing immediately after completing the final subject.</li>
@@ -588,7 +597,7 @@
         <!-- Exam Screen -->
         <div id="exam-screen" class="card hidden">
             <div class="exam-controls">
-                <div class="timer" id="exam-timer">30:00</div>
+                <div class="timer" id="exam-timer">50:00</div>
                 <div id="time-warning" class="time-warning hidden">Time is running out!</div>
             </div>
             
@@ -693,7 +702,7 @@
             startTime: null,
             timer: null,
             markedForReview: [],
-            timeLimit: 30 * 60 // Default 30 minutes in seconds
+            timeLimit: 50 * 60 // Default 50 minutes in seconds
         };
 
         // Departments for SSS classes
@@ -730,9 +739,9 @@
         // JSS subjects (common for all)
         const jssSubjects = [
             "Mathematics", "English Language", "Basic Science", "Social Studies", 
-            "Business Studies", "Computer Studies", "Creative Arts", "P,hysical Education",
-            "French", "Home Economics", "Civic Education", "R,eligious Studies", "Agricultural Science", 
-            "Health Education", ",Music", "History"
+            "Business Studies", "Computer Studies", "Creative Arts", "Physical Education",
+            "French", "Home Economics", "Civic Education", "Religious Studies", "Agricultural Science", 
+            "Health Education", "Music", "History"
         ];
 
         // Questions for all subjects (expanded to 30 questions each)
@@ -853,166 +862,6 @@
                 { id: 29, question: "Which sentence is a question?", options: { A: "I am going to the store", B: "Go to the store", C: "Are you going to the store?", D: "What a beautiful day" }, correctAnswer: "C" },
                 { id: 30, question: "What is the meaning of 'ambiguous'?", options: { A: "clear", B: "uncertain", C: "happy", D: "sad" }, correctAnswer: "B" }
             ],
-            "Computer Studies": [
-                { id: 1, question: "ICT is an acronym for…", options: { A: "International Communication Technology", B: "Information and Communication Technology", C: "Internet and Computer Technology", D: "Internal Communication Tools" }, correctAnswer: "B" },
-                { id: 2, question: "Which of the following is NOT a component of ICT?", options: { A: "Television", B: "Radio", C: "A wooden chair", D: "Computer" }, correctAnswer: "C" },
-                { id: 3, question: "The brain of the computer is called the…", options: { A: "Monitor", B: "Central Processing Unit (CPU)", C: "Keyboard", D: "Mouse" }, correctAnswer: "B" },
-                { id: 4, question: "Which of these is an output device?", options: { A: "Keyboard", B: "Mouse", C: "Printer", D: "Scanner" }, correctAnswer: "C" },
-                { id: 5, question: "All these are examples of input devices EXCEPT…", options: { A: "Barcode Reader", B: "Microphone", C: "Speaker", D: "Joystick" }, correctAnswer: "C" },
-                { id: 6, question: "The physical parts of a computer that you can see and touch are called...", options: { A: "Software", B: "Hardware", C: "Liveware", D: "Peopleware" }, correctAnswer: "B" },
-                { id: 7, question: "A set of instructions that tells the computer what to do is known as...", options: { A: "Hardware", B: "Data", C: "Software", D: "Information" }, correctAnswer: "C" },
-                { id: 8, question: "The first screen you see after turning on a computer is called the...", options: { A: "Icon", B: "Desktop", C: "Wallpaper", D: "Taskbar" }, correctAnswer: "B" },
-                { id: 9, question: "Which of these is a system software?", options: { A: "Microsoft Word", B: "Windows 10", C: "Google Chrome", D: "VLC Media Player" }, correctAnswer: "B" },
-                { id: 10, question: "The small pictures on the desktop are called…", options: { A: "Pictures", B: "Graphics", C: "Icons", D: "Thumbnails" }, correctAnswer: "C" },
-                { id: 11, question: "To start an application like Microsoft Word, you can...", options: { A: "Shout at the computer", B: "Double-click on its icon", C: "Unplug the monitor", D: "Press the power button on the CPU" }, correctAnswer: "B" },
-                { id: 12, question: "The main circuit board of a computer is the...", options: { A: "Motherboard", B: "Fatherboard", C: "Hard disk", D: "Power Supply Unit" }, correctAnswer: "A" },
-                { id: 13, question: "Which of these is used to store data permanently?", options: { A: "RAM", B: "ROM", C: "CPU", D: "ALU" }, correctAnswer: "B" },
-                { id: 14, question: "Which generation of computers used Vacuum Tubes?", options: { A: "First Generation", B: "Second Generation", C: "Third Generation", D: "Fourth Generation" }, correctAnswer: "A" },
-                { id: 15, question: "The device used to type letters and numbers into the computer is the...", options: { A: "Mouse", B: "Keyboard", C: "Monitor", D: "Printer" }, correctAnswer: "B" },
-                { id: 16, question: "A computer is an electronic device because it…", options: { A: "Is very expensive", B: "Uses electrical power to work", C: "Can be used for playing games", D: "Has a large screen" }, correctAnswer: "B" },
-                { id: 17, question: "Which key is used to create a capital letter or the upper character of a key?", options: { A: "Enter Key", B: "Shift Key", C: "Spacebar Key", D: "Delete Key" }, correctAnswer: "B" },
-                { id: 18, question: "The part of the computer that displays the work you are doing is the...", options: { A: "System Unit", B: "Monitor", C: "Keyboard", D: "Mouse" }, correctAnswer: "B" },
-                { id: 19, question: "Which of the following is a pointing device?", options: { A: "Printer", B: "Scanner", C: "Mouse", D: "Speaker" }, correctAnswer: "C" },
-                { id: 20, question: "The full meaning of CPU is…", options: { A: "Computer Processing Unit", B: "Central Processing Unit", C: "Central Personal Unit", D: "Control Processing Unit" }, correctAnswer: "B" },
-                { id: 21, question: "Which of these is NOT a type of computer?", options: { A: "Minicomputer", B: "Supercomputer", C: "Personal Computer (PC)", D: "Calculator" }, correctAnswer: "D" },
-                { id: 22, question: "The 'Recycle Bin' on a computer is used for…", options: { A: "Storing new files", B: "Throwing away unwanted files", C: "Playing music", D: "Browsing the internet" }, correctAnswer: "B" },
-                { id: 23, question: "Which of these is an example of an application software?", options: { A: "Microsoft Excel", B: "Windows 11", C: "Linux", D: "DOS" }, correctAnswer: "A" },
-                { id: 24, question: "The bar usually at the bottom of the desktop that shows open programs is the…", options: { A: "Title bar", B: "Menu bar", C: "Taskbar", D: "Scroll bar" }, correctAnswer: "C" },
-                { id: 25, question: "Data is…", options: { A: "Processed information", B: "Raw facts and figures", C: "A computer program", D: "A type of hardware" }, correctAnswer: "B" },
-                { id: 26, question: "The computer's main memory is also known as…", options: { A: "ROM", B: "RAM", C: "Hard Disk", D: "Flash Drive" }, correctAnswer: "B" },
-                { id: 27, question: "Which key is used to erase a character to the left of the cursor?", options: { A: "Delete Key", B: "Backspace Key", C: "End Key", D: "Insert Key" }, correctAnswer: "B" },
-                { id: 28, question: "How many main parts does a computer have?", options: { A: "2", B: "3", C: "4", D: "5" }, correctAnswer: "C" },
-                { id: 29, question: "Which of these is a storage device?", options: { A: "Monitor", B: "USB Flash Drive", C: "Keyboard", D: "Microphone" }, correctAnswer: "B" },
-                { id: 30, question: "The primary function of a computer is to…", options: { A: "Process data into information", B: "Connect to the internet", C: "Play video games", D: "Print documents" }, correctAnswer: "A" }
-            ],
-            "Home Economics": [
-                { id: 1, question: "What is the primary goal of Home Economics?", options: { A: "To teach cooking and sewing skills", B: "To manage home and family resources effectively", C: "To study science and technology", D: "To learn history and culture" }, correctAnswer: "B" },
-                { id: 2, question: "Which of the following is a major area of Home Economics?", options: { A: "Food and Nutrition", B: "Clothing and Textiles", C: "Home Management", D: "All of the above" }, correctAnswer: "D" },
-                { id: 3, question: "Which of the following nutrients is essential for building strong bones?", options: { A: "Protein", B: "Carbohydrate", C: "Calcium", D: "Vitamin C" }, correctAnswer: "C" },
-                { id: 4, question: "What is the best way to maintain good oral hygiene?", options: { A: "Brushing teeth once a week", B: "Brushing teeth twice a day", C: "Rinsing mouth with water only", D: "Using toothpick regularly" }, correctAnswer: "B" },
-                { id: 5, question: "Which of the following is a benefit of family living?", options: { A: "Emotional support", B: "Financial support", C: "Social support", D: "All of the above" }, correctAnswer: "D" },
-                { id: 6, question: "Which of the following is a type of kitchen equipment?", options: { A: "Refrigerator", B: "Oven", C: "Blender", D: "All of the above" }, correctAnswer: "D" },
-                { id: 7, question: "What is the importance of first aid in home management?", options: { A: "It saves lives", B: "It reduces injury severity", C: "It promotes healing", D: "All of the above" }, correctAnswer: "D" },
-                { id: 8, question: "Which of the following is a type of home decoration?", options: { A: "Painting", B: "Carpentry", C: "Interior design", D: "All of the above" }, correctAnswer: "D" },
-                { id: 9, question: "What is the best way to manage stress?", options: { A: "Exercise regularly", B: "Meditate daily", C: "Sleep well", D: "All of the above" }, correctAnswer: "D" },
-                { id: 10, question: "Which of the following is a career opportunity in Home Economics?", options: { A: "Dietetics", B: "Fashion Design", C: "Hospitality Management", D: "All of the above" }, correctAnswer: "D" },
-                { id: 11, question: "Which organ helps to maintain the body's balance during movement?", options: { A: "Ear", B: "Nose", C: "Leg", D: "Skin" }, correctAnswer: "A" },
-                { id: 12, question: "A narrow tube in the skin from which each hair grows is called the:", options: { A: "Hair follicle", B: "Pore", C: "Scalp", D: "Sebaceous gland" }, correctAnswer: "A" },
-                { id: 13, question: "Which of the following is a common parasite that lives on the hair?", options: { A: "Dandruff", B: "Lice", C: "Bacteria", D: "Ringworm" }, correctAnswer: "B" },
-                { id: 14, question: "Which of the following is a form of artificial hair?", options: { A: "Wig", B: "Hair extension", C: "Hairpiece (attachment)", D: "All of the above" }, correctAnswer: "D" },
-                { id: 15, question: "Which of these is an organ of sight?", options: { A: "Nose", B: "Mouth", C: "Eyes", D: "Ear" }, correctAnswer: "C" },
-                { id: 16, question: "Which of these products is mainly used for washing the hair?", options: { A: "Laundry soap", B: "Washing soda", C: "Shampoo", D: "Body soap" }, correctAnswer: "C" },
-                { id: 17, question: "Which part of the body is used primarily for tasting?", options: { A: "Hand", B: "Mouth", C: "Nose", D: "Tongue" }, correctAnswer: "D" },
-                { id: 18, question: "Which of the following is NOT an important consideration when choosing a comb for your hair?", options: { A: "Hair length", B: "Hair thickness", C: "Hair type", D: "Brand name" }, correctAnswer: "D" },
-                { id: 19, question: "The part of the eye where images are formed is the:", options: { A: "Eyelid", B: "Iris", C: "Lens", D: "Retina" }, correctAnswer: "D" },
-                { id: 20, question: "The outermost layer of the skin is called the:", options: { A: "Epidermis", B: "Dermis", C: "Subcutaneous layer", D: "Skin appendage" }, correctAnswer: "A" },
-                { id: 21, question: "The first set of teeth that a child grows are called:", options: { A: "Wisdom teeth", B: "Permanent teeth", C: "Milk teeth", D: "Baby molars" }, correctAnswer: "C" },
-                { id: 22, question: "The sebaceous gland produces ______ that lubricates the hair and softens the skin.", options: { A: "Oil (sebum)", B: "Water", C: "Sweat", D: "Urine" }, correctAnswer: "A" },
-                { id: 23, question: "Which of the following helps protect the scalp from sun and cold?", options: { A: "Hair", B: "Skull", C: "Ear", D: "Neck" }, correctAnswer: "A" },
-                { id: 24, question: "When the skin is exposed to sunlight, the body produces vitamin:", options: { A: "A", B: "B", C: "C", D: "D" }, correctAnswer: "D" },
-                { id: 25, question: "Eating foods rich in which vitamin helps to maintain good vision?", options: { A: "Vitamin A", B: "Vitamin D", C: "Vitamin E", D: "Vitamin K" }, correctAnswer: "A" },
-                { id: 26, question: "Excess heat on the scalp and hair may result in all of the following EXCEPT:", options: { A: "Burnt scalp", B: "Hair breakage", C: "Increased hair growth", D: "Sore scalp" }, correctAnswer: "C" },
-                { id: 27, question: "The school subject that helps a Home Economist to understand the working of electricity is:", options: { A: "Economics", B: "Sociology", C: "Physics", D: "Mathematics" }, correctAnswer: "C" },
-                { id: 28, question: "The term that means keeping the natural alignment of the body is:", options: { A: "Good posture", B: "Manicure", C: "Weight lifting", D: "Sitting order" }, correctAnswer: "A" },
-                { id: 29, question: "Which of the following helps to prevent dryness of hair and scalp?", options: { A: "Brush", B: "Oil", C: "Hair spray", D: "Shampoo" }, correctAnswer: "B" },
-                { id: 30, question: "One of the functions of hair on the head is to:", options: { A: "Aid the head", B: "Beautiful the head", C: "Produce food", D: "Digest food" }, correctAnswer: "B" }
-            ],
-            "History": [
-                { id: 1, question: "The word 'History' came from _____ words", options: { A: "an American", B: "a German", C: "a Greek", D: "an Asian", E: "a French" }, correctAnswer: "C" },
-                { id: 2, question: "_____ is the Father of History", options: { A: "Herodotus", B: "Herodias", C: "Aristocrat", D: "Aristotle", E: "Theocrat" }, correctAnswer: "A" },
-                { id: 3, question: "History is study of the _____", options: { A: "the present", B: "the past", C: "the future", D: "the moment", E: "the continuous" }, correctAnswer: "B" },
-                { id: 4, question: "The person who studied history is called _____", options: { A: "historic", B: "historical", C: "historian", D: "historist", E: "story teller" }, correctAnswer: "C" },
-                { id: 5, question: "A secondary source of history is a/an _____", options: { A: "written book", B: "spoken word", C: "original book", D: "unwritten book", E: "unspoken word" }, correctAnswer: "A" },
-                { id: 6, question: "Studying history helps an individual to _____", options: { A: "be self reliant", B: "be selfish", C: "have information", D: "be intelligent", E: "have good moral" }, correctAnswer: "A" },
-                { id: 7, question: "Which of these is true about the study of History?", options: { A: "It is studied only in Nigeria", B: "it only benefits the government", C: "it does not connect to our great grandparents", D: "it is good for every Nigerian student", E: "it does not involve stories" }, correctAnswer: "D" },
-                { id: 8, question: "_____ is a place where collections of artifacts and objects of great cultures are preserved", options: { A: "museum", B: "libraries", C: "shelves", D: "safe drawer", E: "indexes" }, correctAnswer: "A" },
-                { id: 9, question: "One of these is a cultural festival in Lagos", options: { A: "Aragungu Festival", B: "New Yam Festival", C: "Goddess Festival", D: "Ogun Festival", E: "Eyo Festival" }, correctAnswer: "E" },
-                { id: 10, question: "The display of materials for the purpose of inspection by interested members of the public is called", options: { A: "exhibition", B: "display", C: "showcase", D: "scene", E: "library" }, correctAnswer: "A" },
-                { id: 11, question: "All of these are ways of accessing sources of history except", options: { A: "excursion", B: "expedition", C: "exhibition", D: "libraries", E: "museums" }, correctAnswer: "B" },
-                { id: 12, question: "Olumo Rock is an important site found in", options: { A: "Badagry", B: "Abeokuta", C: "Jos", D: "Ogoja", E: "Abuja" }, correctAnswer: "B" },
-                { id: 13, question: "Chronology is the use of _____ to describe time and period in history", options: { A: "historical terms", B: "historical books", C: "historical collections", D: "historical places", E: "historical behavior" }, correctAnswer: "A" },
-                { id: 14, question: "Biography and Autobiography is a _____ source of history", options: { A: "primary", B: "secondary", C: "tertiary", D: "all of the above", E: "None of the above" }, correctAnswer: "B" },
-                { id: 15, question: "Learning about the past by talking to people who remembered or took part in it is called", options: { A: "written history", B: "oral history", C: "story telling", D: "folk tale", E: "documentation" }, correctAnswer: "B" },
-                { id: 16, question: "The materials or objects that serve as evidence of the past are kept in _____", options: { A: "archives", B: "libraries", C: "safe boxes", D: "Schools", E: "Universities" }, correctAnswer: "A" },
-                { id: 17, question: "There are _____ types of sources of history", options: { A: "2", B: "3", C: "4", D: "5", E: "6" }, correctAnswer: "A" },
-                { id: 18, question: "People who dig for artifacts to confirm historical facts are called", options: { A: "historians", B: "experts", C: "artisans", D: "archeologists", E: "biologists" }, correctAnswer: "D" },
-                { id: 19, question: "All of these are primary sources of history except", options: { A: "artifacts", B: "text books", C: "legend", D: "folklore", E: "oral traditions" }, correctAnswer: "B" },
-                { id: 20, question: "These are characters in legend except", options: { A: "actors", B: "warriors", C: "heroes", D: "heroines", E: "rulers" }, correctAnswer: "A" },
-                { id: 21, question: "Folklores are", options: { A: "televised topics for discussion", B: "materials to be read from the library", C: "customs which people pass to others", D: "books written by someone about past events", E: "books containing words and information" }, correctAnswer: "C" },
-                { id: 22, question: "Archival materials include", options: { A: "beads", B: "bones", C: "cowries", D: "all of the above", E: "none of the above" }, correctAnswer: "D" },
-                { id: 23, question: "Forms of tertiary sources of history are all of these but", options: { A: "bulletins", B: "memoranda", C: "manuals", D: "textbooks", E: "directories" }, correctAnswer: "D" },
-                { id: 24, question: "Which of these statements is not true about importance of history to the nation?", options: { A: "It promotes nationalism and patriotism", B: "it helps to fight other countries coming into a country", C: "it promotes national development", D: "it guides future planning", E: "it produces responsible citizens" }, correctAnswer: "B" },
-                { id: 25, question: "The history of someone's life and times written by another person is called", options: { A: "biography", B: "autobiography", C: "personal record", D: "Auto text", E: "life history" }, correctAnswer: "A" },
-                { id: 26, question: "A short official statement or report of news is called _____", options: { A: "bulletin", B: "manual", C: "directories", D: "reports", E: "guide" }, correctAnswer: "A" },
-                { id: 27, question: "A thesis carried out by students is an example of_____ of history", options: { A: "manual source", B: "tertiary source", C: "written source", D: "secondary source", E: "archival source" }, correctAnswer: "D" },
-                { id: 28, question: "Events that occurred before written records are called _____", options: { A: "memory", B: "journal", C: "prehistory", D: "stories", E: "folktales" }, correctAnswer: "C" },
-                { id: 29, question: "The difference between history and story telling is that", options: { A: "storytelling is not traceable", B: "storytelling actually took place", C: "storytelling has a source that can be traced", D: "storytelling is time based", E: "storytelling requires evidence" }, correctAnswer: "A" },
-                { id: 30, question: "Folklore teaches all of these except", options: { A: "Morales", B: "Science", C: "Beliefs", D: "Customs", E: "Languages" }, correctAnswer: "B" }
-            ],
-            "Business Studies": [
-                { id: 1, question: "Buying, selling and goods distribution are covered by.", options: { A: "Commerce", B: "Trading practice", C: "Office practice", D: "Buying practice" }, correctAnswer: "A" },
-                { id: 2, question: "The record keeping of business transactions in business books is called", options: { A: "Record keeping practice", B: "Book keeping practice", C: "Accounting practice", D: "Book keeping" }, correctAnswer: "D" },
-                { id: 3, question: "Which of these professionals will business studies produce?", options: { A: "A production Engineer", B: "A farmer", C: "A stockbroker", D: "A nutritionist" }, correctAnswer: "C" },
-                { id: 4, question: "The process of inputting information or data using a keyboard is called:", options: { A: "Key typing", B: "Shorthand", C: "Keyboarding", D: "Key writing" }, correctAnswer: "C" },
-                { id: 5, question: "One of these deals with the various activities carried out every day within an organization", options: { A: "Office practice", B: "Insurance", C: "Marketing", D: "Economic" }, correctAnswer: "A" },
-                { id: 6, question: "A room set aside for clerical activities in an organization is called", options: { A: "Clerical Room", B: "Principal's Office", C: "Reception", D: "An Office" }, correctAnswer: "D" },
-                { id: 7, question: "The major types of office are:", options: { A: "Large and minor offices", B: "Large and small offices", C: "Good and bad offices", D: "Small and great offices" }, correctAnswer: "B" },
-                { id: 8, question: "A large office can be found in a", options: { A: "Small organization", B: "Big room", C: "Big organization", D: "Small room" }, correctAnswer: "C" },
-                { id: 9, question: "All these are examples of a small offices except:", options: { A: "Principal's office", B: "Vice principal office", C: "Receptionist office", D: "Banking hall" }, correctAnswer: "D" },
-                { id: 10, question: "Twenty or more people can operate in a", options: { A: "New office", B: "Old office", C: "Small office", D: "Large office" }, correctAnswer: "D" },
-                { id: 11, question: "A normal office will have all the following except:", options: { A: "File cabinet", B: "Chairs", C: "Dining tables", D: "Files" }, correctAnswer: "C" },
-                { id: 12, question: "Which of these is not a function of an Office?", options: { A: "Processing of information", B: "Information storing", C: "Rejecting information", D: "Recording information" }, correctAnswer: "C" },
-                { id: 13, question: "Sorting of documents is one of the", options: { A: "Personal qualities of a clerical staff", B: "Function of a clerical staff", C: "Job qualities of a clerical staff", D: "Academic qualities of a clerical staff" }, correctAnswer: "B" },
-                { id: 14, question: "An attitude of getting to work at the right time is called:", options: { A: "Promptness", B: "Regularity", C: "Timelessness", D: "Punctuality" }, correctAnswer: "D" },
-                { id: 15, question: "An activity a person engages in to make a living is called:", options: { A: "Work", B: "Business activity", C: "Commercial transactions", D: "Business transactions" }, correctAnswer: "A" },
-                { id: 16, question: "Regularity and punctuality may likely lead to:", options: { A: "Low productivity", B: "High productivity", C: "Low performance", D: "Bad product" }, correctAnswer: "B" },
-                { id: 17, question: "Good attitude to work and readiness to put in one's best every time in the work place is the same as:", options: { A: "Punctuality", B: "Regularity", C: "Devotion to work", D: "Productivity" }, correctAnswer: "C" },
-                { id: 18, question: "The department that sees to staff recruitment, promotion welfare etc. is called", options: { A: "Staff department", B: "Workers department", C: "Purchasing department", D: "Personnel department" }, correctAnswer: "D" },
-                { id: 19, question: "The buying and selling of goods and services within a country is called", options: { A: "Trade", B: "Local trade", C: "Foreign trade", D: "Home trade" }, correctAnswer: "D" },
-                { id: 20, question: "Which of these helps in financing a business", options: { A: "Banking", B: "Communication", C: "Advertising", D: "Insurance" }, correctAnswer: "A" },
-                { id: 21, question: "Movement of goods to another country may be connected with", options: { A: "Export trade", B: "Intercontinental trade", C: "Domestic trade", D: "Foreign trade" }, correctAnswer: "A" },
-                { id: 22, question: "A building used for storing goods until they are sold is called:", options: { A: "A Supermarket", B: "A Wharf", C: "A warehouse", D: "A Goods store" }, correctAnswer: "C" },
-                { id: 23, question: "All these are classified under land except", options: { A: "Forest", B: "Seas", C: "Tractor", D: "Lakes" }, correctAnswer: "C" },
-                { id: 24, question: "All these are form of labour except", options: { A: "Skilled labour", B: "Unskilled labour", C: "Semi-skilled labour", D: "Semi-unskilled labour" }, correctAnswer: "D" },
-                { id: 25, question: "What is the primary purpose of a business?", options: { A: "To provide employment", B: "To make a profit", C: "To serve the community", D: "To innovate products" }, correctAnswer: "B" },
-                { id: 26, question: "Which of the following is a type of business ownership?", options: { A: "Sole proprietorship", B: "Partnership", C: "Corporation", D: "All of the above" }, correctAnswer: "D" },
-                { id: 27, question: "What is market research?", options: { A: "Studying competitors", B: "Analyzing customer needs", C: "Both A and B", D: "None of the above" }, correctAnswer: "C" },
-                { id: 28, question: "Which of these is a fixed cost for a business?", options: { A: "Raw materials", B: "Rent", C: "Wages", D: "Utilities" }, correctAnswer: "B" },
-                { id: 29, question: "What does SWOT stand for in business analysis?", options: { A: "Strengths, Weaknesses, Opportunities, Threats", B: "Sales, Wages, Operations, Taxes", C: "Strategy, Work, Objectives, Targets", D: "None of the above" }, correctAnswer: "A" },
-                { id: 30, question: "Which of the following is an example of a marketing strategy?", options: { A: "Advertising", B: "Pricing", C: "Distribution", D: "All of the above" }, correctAnswer: "D" }
-            ],
-            "French": [
-                { id: 1, question: "Fatima est........", options: { A: "vrai", B: "oui", C: "content" }, correctAnswer: "C" },
-                { id: 2, question: "Quel âge a-t-elle?", options: { A: "5ans", B: "40ans", C: "12ans" }, correctAnswer: "C" },
-                { id: 3, question: "Selon le texte, sur quel sujet porte le cours?", options: { A: "Conjugaison", B: "Grammaire", C: "Orthographe" }, correctAnswer: "A" },
-                { id: 4, question: "Quand est-ce que la classe avait commencé?", options: { A: "9h.45mins", B: "8h.30min", C: "15h.30min" }, correctAnswer: "B" },
-                { id: 5, question: "Quelle est l'attitude des élèves quand le professeur est rentré en classe?", options: { A: "assie", B: "sort", C: "débout" }, correctAnswer: "C" },
-                { id: 6, question: "Quelle est la reaction du professeur après celle des élèves quand il était rentré en classe?", options: { A: "souhaité", B: "punir", C: "mangeait" }, correctAnswer: "A" },
-                { id: 7, question: "Quelle est la reaction de Fatima pendant le cours?", options: { A: "s'amuser", B: "attentife", C: "dormir" }, correctAnswer: "B" },
-                { id: 8, question: "Fatima se participait en classe", options: { A: "d'accord", B: "vient", C: "vrai" }, correctAnswer: "A" },
-                { id: 9, question: "Quelle est la moyenne de Fatima après le devoir?", options: { A: "4/10", B: "9/10", C: "10/10" }, correctAnswer: "B" },
-                { id: 10, question: "Fatima est une", options: { A: "fille", B: "fils", C: "frere" }, correctAnswer: "A" },
-                { id: 11, question: "Regarder is", options: { A: "Look", B: "Peep", C: "Find" }, correctAnswer: "A" },
-                { id: 12, question: "Lire means", options: { A: "Learn", B: "Lean", C: "Read" }, correctAnswer: "C" },
-                { id: 13, question: "Vous ....... Nigérian?", options: { A: "êtes", B: "est", C: "es" }, correctAnswer: "A" },
-                { id: 14, question: "Listen is", options: { A: "Etes", B: "Ecouter", C: "Enlarge" }, correctAnswer: "B" },
-                { id: 15, question: "Open means", options: { A: "Outrage", B: "Hollow", C: "Ouvrer" }, correctAnswer: "C" },
-                { id: 16, question: "Silent means", options: { A: "Stillenc", B: "Silence", C: "Silent" }, correctAnswer: "B" },
-                { id: 17, question: "Tie is", options: { A: "Canvass", B: "Cravate", C: "Cavins" }, correctAnswer: "B" },
-                { id: 18, question: "Cap is", options: { A: "Shapo", B: "Chapeau", C: "Chapo" }, correctAnswer: "B" },
-                { id: 19, question: "Skirt is", options: { A: "Une jupe", B: "Joggers", C: "Un jean" }, correctAnswer: "A" },
-                { id: 20, question: "Shirt is", options: { A: "Shemise", B: "Chemise", C: "Chomize" }, correctAnswer: "B" },
-                { id: 21, question: "....... enfants de Mon père", options: { A: "Une", B: "Un", C: "Les" }, correctAnswer: "C" },
-                { id: 22, question: "Quel âge as .......?", options: { A: "toi", B: "tu", C: "Vous" }, correctAnswer: "B" },
-                { id: 23, question: "Le pilote travail à", options: { A: "L'aeroport", B: "Garage", C: "Laundry" }, correctAnswer: "A" },
-                { id: 24, question: "L'ingénieur travail à", options: { A: "Chantier", B: "Marcher", C: "Stade" }, correctAnswer: "A" },
-                { id: 25, question: "Le professeur travail à", options: { A: "Banque", B: "L'ecole", C: "La porte" }, correctAnswer: "B" },
-                { id: 26, question: "Le médecin a travail à", options: { A: "La porte", B: "L'ecole", C: "L'hopital" }, correctAnswer: "C" },
-                { id: 27, question: "Choose the opposite of 'beau'", options: { A: "belle", B: "laid", C: "gentil" }, correctAnswer: "B" },
-                { id: 28, question: "Choose the opposite of 'oncle'", options: { A: "mère", B: "tante", C: "fille" }, correctAnswer: "B" },
-                { id: 29, question: "Choose the opposite of 'noir'", options: { A: "verte", B: "blanc", C: "rose" }, correctAnswer: "B" },
-                { id: 30, question: "Choose the opposite of 'petite'", options: { A: "longue", B: "grande", C: "courte" }, correctAnswer: "B" }
-            ],
             "Basic Science": [
                    { id: 1, question: "Which of these is not a gas", options: { A: "Mercury", B: "Hydrogen", C: "Steam", D: "Smoke" }, correctAnswer: "A" },
 
@@ -1075,41 +924,8 @@
 { id: 30, question: "Which of these is a non metal", options: { A: "Calcium", B: "Zinc", C: "Aluminium", D: "Neon" }, correctAnswer: "D" }
 
             ],
-               
-            "Social Studies": [
-                { id: 1, question: "What is the study of human society and social relationships called?", options: { A: "Biology", B: "Geography", C: "Social Studies", D: "Mathematics" }, correctAnswer: "C" },
-                { id: 2, question: "Which of these is a component of social studies?", options: { A: "History", B: "Geography", C: "Civic Education", D: "All of the above" }, correctAnswer: "D" },
-                { id: 3, question: "What is the capital city of Nigeria?", options: { A: "Lagos", B: "Abuja", C: "Kano", D: "Port Harcourt" }, correctAnswer: "B" },
-                { id: 4, question: "Which of these is a type of government?", options: { A: "Democracy", B: "Monarchy", C: "Dictatorship", D: "All of the above" }, correctAnswer: "D" },
-                { id: 5, question: "What is the process of becoming a citizen of a country called?", options: { A: "Migration", B: "Naturalization", C: "Emigration", D: "Immigration" }, correctAnswer: "B" },
-                { id: 6, question: "Which of these is a fundamental human right?", options: { A: "Right to life", B: "Right to education", C: "Right to freedom of speech", D: "All of the above" }, correctAnswer: "D" },
-                { id: 7, question: "What is the study of the earth's physical features called?", options: { A: "History", B: "Geography", C: "Economics", D: "Sociology" }, correctAnswer: "B" },
-                { id: 8, question: "Which of these is a natural resource?", options: { A: "Water", B: "Oil", C: "Forest", D: "All of the above" }, correctAnswer: "D" },
-                { id: 9, question: "What is the system of production, distribution, and consumption of goods and services called?", options: { A: "Politics", B: "Economics", C: "Sociology", D: "Anthropology" }, correctAnswer: "B" },
-                { id: 10, question: "Which of these is a type of family?", options: { A: "Nuclear family", B: "Extended family", C: "Single-parent family", D: "All of the above" }, correctAnswer: "D" },
-                { id: 11, question: "What is the study of past events called?", options: { A: "Geography", B: "History", C: "Economics", D: "Sociology" }, correctAnswer: "B" },
-                { id: 12, question: "Which of these is a type of culture?", options: { A: "Material culture", B: "Non-material culture", C: "Both A and B", D: "None of the above" }, correctAnswer: "C" },
-                { id: 13, question: "What is the process of moving from one place to another called?", options: { A: "Migration", B: "Communication", C: "Transportation", D: "All of the above" }, correctAnswer: "A" },
-                { id: 14, question: "Which of these is a type of communication?", options: { A: "Verbal communication", B: "Non-verbal communication", C: "Written communication", D: "All of the above" }, correctAnswer: "D" },
-                { id: 15, question: "What is the system of rules that a country follows called?", options: { A: "Politics", B: "Law", C: "Economics", D: "Sociology" }, correctAnswer: "B" },
-                { id: 16, question: "Which of these is a type of economic system?", options: { A: "Capitalism", B: "Socialism", C: "Mixed economy", D: "All of the above" }, correctAnswer: "D" },
-                { id: 17, question: "What is the study of population called?", options: { A: "Geography", B: "Demography", C: "Sociology", D: "Economics" }, correctAnswer: "B" },
-                { id: 18, question: "Which of these is a type of social institution?", options: { A: "Family", B: "Education", C: "Religion", D: "All of the above" }, correctAnswer: "D" },
-                { id: 19, question: "What is the process of learning the culture of a society called?", options: { A: "Education", B: "Socialization", C: "Communication", D: "Migration" }, correctAnswer: "B" },
-                { id: 20, question: "Which of these is a type of government in Nigeria?", options: { A: "Presidential system", B: "Parliamentary system", C: "Monarchy", D: "Dictatorship" }, correctAnswer: "A" },
-                { id: 21, question: "What is the study of the relationship between people and their environment called?", options: { A: "Geography", B: "History", C: "Economics", D: "Sociology" }, correctAnswer: "A" },
-                { id: 22, question: "Which of these is a type of conflict resolution?", options: { A: "Negotiation", B: "Mediation", C: "Arbitration", D: "All of the above" }, correctAnswer: "D" },
-                { id: 23, question: "What is the process of making decisions for a society called?", options: { A: "Politics", B: "Economics", C: "Sociology", D: "Anthropology" }, correctAnswer: "A" },
-                { id: 24, question: "Which of these is a type of human right?", options: { A: "Civil rights", B: "Political rights", C: "Economic rights", D: "All of the above" }, correctAnswer: "D" },
-                { id: 25, question: "What is the study of the distribution of power and resources in society called?", options: { A: "Economics", B: "Politics", C: "Sociology", D: "Anthropology" }, correctAnswer: "B" },
-                { id: 26, question: "Which of these is a type of social change?", options: { A: "Technological change", B: "Cultural change", C: "Economic change", D: "All of the above" }, correctAnswer: "D" },
-                { id: 27, question: "What is the process of interaction between different cultures called?", options: { A: "Cultural diffusion", B: "Socialization", C: "Migration", D: "Communication" }, correctAnswer: "A" },
-                { id: 28, question: "Which of these is a type of citizenship?", options: { A: "Citizenship by birth", B: "Citizenship by naturalization", C: "Citizenship by registration", D: "All of the above" }, correctAnswer: "D" },
-                { id: 29, question: "What is the study of the production, distribution, and consumption of goods and services called?", options: { A: "Politics", B: "Economics", C: "Sociology", D: "Anthropology" }, correctAnswer: "B" },
-                { id: 30, question: "Which of these is a type of social problem?", options: { A: "Poverty", B: "Unemployment", C: "Crime", D: "All of the above" }, correctAnswer: "D" }
-            ],
             "Creative Arts": [
-                { id: 1, question: "The branch of art that involves acting, dancing, and singing is known as", options: { A: "Performing Arts", B: "Literary Arts", C: "Visual Arts", D: "Fine Arts" }, correctAnswer: "A" },
+               { id: 1, question: "The branch of art that involves acting, dancing, and singing is known as", options: { A: "Performing Arts", B: "Literary Arts", C: "Visual Arts", D: "Fine Arts" }, correctAnswer: "A" },
 
 { id: 2, question: "Someone who writes drama scripts is called a", options: { A: "Novelist", B: "Dramatist", C: "Musician", D: "Artist" }, correctAnswer: "B" },
 
@@ -1117,7 +933,7 @@
 
 { id: 4, question: "Fine Art is a branch of", options: { A: "Visual Arts", B: "Performing Arts", C: "Applied Arts", D: "Literary Arts" }, correctAnswer: "A" },
 
-{ id: 5, question: "The word music originated from a ___ word.", options: { A: "Latin", B: "Greek", C: "French", D: "Roman" }, correctAnswer: "B" },
+{ id: 5, question: "The word music originated from a _____ word.", options: { A: "Latin", B: "Greek", C: "French", D: "Roman" }, correctAnswer: "B" },
 
 { id: 6, question: "The drawing of lifeless objects such as bottles and fruits is called", options: { A: "Nature drawing", B: "Still life drawing", C: "Imaginative drawing", D: "Figure drawing" }, correctAnswer: "B" },
 
@@ -1125,9 +941,9 @@
 
 { id: 8, question: "A person who performs in a play is known as", options: { A: "Dramatist", B: "Director", C: "Actor", D: "Crew member" }, correctAnswer: "C" },
 
-{ id: 9, question: "The word art originated from a ___ word.", options: { A: "Latin", B: "English", C: "Greek", D: "American" }, correctAnswer: "A" },
+{ id: 9, question: "The word art originated from a _____ word.", options: { A: "Latin", B: "English", C: "Greek", D: "American" }, correctAnswer: "A" },
 
-{ id: 10, question: "In Africa, music reflects in all human ___.", options: { A: "Works", B: "Activities", C: "Education", D: "Religion" }, correctAnswer: "B" },
+{ id: 10, question: "In Africa, music reflects in all human _____.", options: { A: "Works", B: "Activities", C: "Education", D: "Religion" }, correctAnswer: "B" },
 
 { id: 11, question: "Which of the following is not a principle of design?", options: { A: "Rhythm", B: "Balance", C: "Texture", D: "Alphabet" }, correctAnswer: "D" },
 
@@ -1165,10 +981,72 @@
 
 { id: 28, question: "Tragedy and comedy are both types of", options: { A: "Music", B: "Sculpture", C: "Drama", D: "Dance" }, correctAnswer: "C" },
 
-{ id: 29, question: "___ refers to the repetition of elements to create movement in art.", options: { A: "Emphasis", B: "Rhythm", C: "Variety", D: "Harmony" }, correctAnswer: "B" },
+{ id: 29, question: "_____ refers to the repetition of elements to create movement in art.", options: { A: "Emphasis", B: "Rhythm", C: "Variety", D: "Harmony" }, correctAnswer: "B" },
 
 { id: 30, question: "The process of making useful objects that are beautiful is called", options: { A: "Craft", B: "Fine Art", C: "Drama", D: "Sculpture" }, correctAnswer: "A" }
         ],
+        "Christian Religious Knowledge": [
+            { id: 1, question: "God is the Alpha and Omega. This means that God is......", options: { A: "The first and last letter of the Greek alphabet", B: "The 'A' and 'Z' of everything", C: "The beginning and not the last of all things", D: "The beginning and the end, the first and the last of all things" }, correctAnswer: "D" },
+
+{ id: 2, question: "God is also known as 'I am who I am' by his revelation to Moses at the burning bush. This means that", options: { A: "He is ever present and unchangeable", B: "He is God of the Jews and not Gentiles", C: "He was God, He is God, and will be God", D: "He wanted Moses to fear him and deliver the Israelites from Egyptian bondage" }, correctAnswer: "A" },
+
+{ id: 3, question: "The following are the attributes or distinct qualities of God EXCEPT one", options: { A: "Sovereignty", B: "Eternity", C: "Immortality", D: "Dependence" }, correctAnswer: "D" },
+
+{ id: 4, question: "The attributes of God are Omnipotence, Omniscience, Omnipresence meaning serially that all God is......", options: { A: "All-knowing, all-powerful, and everywhere", B: "All-powerful, all-knowing, and everywhere", C: "Everywhere, all-knowing, and all-powerful", D: "All-powerful, all-knowing, and strong" }, correctAnswer: "B" },
+
+{ id: 5, question: "How God created the world shows a sense of......", options: { A: "Carefulness", B: "Carelessness", C: "Laziness", D: "Orderliness" }, correctAnswer: "D" },
+
+{ id: 6, question: "The two accounts of creation in the bible can be found in the book of", options: { A: "Matthew", B: "Genesis", C: "Numbers", D: "Exodus" }, correctAnswer: "B" },
+
+{ id: 7, question: "In the first account of creation, God created the world in ....... days.", options: { A: "3 days", B: "5 days", C: "7 days", D: "6 days" }, correctAnswer: "D" },
+
+{ id: 8, question: "God created the world by......", options: { A: "Using materials known to him alone", B: "Miraculous means", C: "The help of man", D: "Mere spoken words" }, correctAnswer: "D" },
+
+{ id: 9, question: "In the second account of creation, man became a living being with.......", options: { A: "The light of God", B: "The spirit of God", C: "The breath of God", D: "The touch of God" }, correctAnswer: "C" },
+
+{ id: 10, question: "The Garden of Eden can be located in..........", options: { A: "Jordan", B: "Jericho", C: "Eden", D: "Jerusalem" }, correctAnswer: "C" },
+
+{ id: 11, question: "The term 'woman' means .........", options: { A: "Helper fit for Adam", B: "Woe to man", C: "Taken out of man", D: "The mother of all living things" }, correctAnswer: "C" },
+
+{ id: 12, question: "The great river which flowed out of the garden of Eden was divided into ....... branches.", options: { A: "2", B: "3", C: "4", D: "5" }, correctAnswer: "C" },
+
+{ id: 13, question: "These rivers were namely .......", options: { A: "Tigris and Euphrates", B: "Gishon, Tigris, and Pishon", C: "The Nile, Jordan, Tigris, Gihon and Pishon", D: "Pishon, Gihon, Tigris, and Euphrates" }, correctAnswer: "D" },
+
+{ id: 14, question: "God's reason and purpose for creating man include to ......", options: { A: "Worship him", B: "Love and serve him", C: "Know him", D: "All of the above" }, correctAnswer: "D" },
+
+{ id: 15, question: "God's sovereignty means .......", options: { A: "His mercy", B: "His holiness", C: "His power and authority", D: "His honesty" }, correctAnswer: "C" },
+
+{ id: 16, question: "The statement made by Adam when God brought to him a companion was", options: { A: "God has answered my prayer", B: "God is Jehovah Jireh", C: "God has removed my reproach", D: "This at last is the bone of my bone and the flesh of my flesh" }, correctAnswer: "D" },
+
+{ id: 17, question: "The word creation from the bible means", options: { A: "Giving birth to younger ones", B: "To manufacture goods", C: "Bringing something into existence", D: "The activities of God to bring into existence things that were not there before by mere spoken words" }, correctAnswer: "D" },
+
+{ id: 18, question: "Therefore shall a man leave his father and mother and shall cleave or join unto his .......... and they shall become one flesh.", options: { A: "Girlfriend", B: "Concubine", C: "Wife", D: "Wives" }, correctAnswer: "C" },
+
+{ id: 19, question: "One of the authorities God gave man after his creation was .......", options: { A: "To eat and enjoy the fruits in the garden", B: "Build houses and invent aeroplane", C: "Increase and multiply and fill the earth", D: "Eat some of the fruits in the garden" }, correctAnswer: "C" },
+
+{ id: 20, question: "Marriage institution originated at the garden of .......", options: { A: "Bethel", B: "Jordan", C: "Israel", D: "Eden" }, correctAnswer: "D" },
+
+{ id: 21, question: "One of these is not a type of marriage", options: { A: "Sovorate", B: "Trial marriage", C: "Procreation", D: "Same-sex marriage" }, correctAnswer: "C" },
+
+{ id: 22, question: "A man marrying a fellow man is called .....", options: { A: "Polygamous", B: "Marriage by abduction", C: "Mixed marriage", D: "Same-sex marriage" }, correctAnswer: "D" },
+
+{ id: 23, question: "Marriage being legal means ........", options: { A: "It was done according to tradition and custom", B: "It was done with the consent of both parents", C: "The dowry or bride price was duly paid", D: "All of the above" }, correctAnswer: "D" },
+
+{ id: 24, question: "The following are some of the functions of marriage EXCEPT .........", options: { A: "Companion", B: "Integrity", C: "Abduction", D: "Procreation" }, correctAnswer: "C" },
+
+{ id: 25, question: "Disobedience is a sin because ........", options: { A: "Most students disobey", B: "Adam and Eve disobeyed", C: "It is a more serious offense than others", D: "It goes against the divine law" }, correctAnswer: "D" },
+
+{ id: 26, question: "The sin of disobedience by Adam and Eve was as a result of ......", options: { A: "Selfishness and greed", B: "Hunger", C: "Pride and discontentment", D: "Purposeful ignorance" }, correctAnswer: "C" },
+
+{ id: 27, question: "Some of the consequences of disobedience of our students are these EXCEPT ......", options: { A: "Dropping out of school", B: "Untimely death", C: "Highly regarded by the society", D: "Detention at the police station" }, correctAnswer: "C" },
+
+{ id: 28, question: "The following are the societal vices or evils common in our society or country EXCEPT ......", options: { A: "Child abuse", B: "Armed robbery", C: "Freedom of worship", D: "Child trafficking" }, correctAnswer: "C" },
+
+{ id: 29, question: "Train up a child in the way he should go and when he is old, he will not ....... from it.", options: { A: "Jump", B: "Return", C: "Backslide", D: "Depart" }, correctAnswer: "D" },
+
+{ id: 30, question: "Disobedience is an act of ........ against God's commandment and moral principles.", options: { A: "War", B: "Challenge", C: "Regret", D: "Rebellion" }, correctAnswer: "D" }
+        ],
+               
         "Agricultural Science":[
             { id: 1, question: "Agriculture was coined from two Latin words which are ……………", options: { A: "Agri and ture", B: "Agers and cultura", C: "Agro and nature", D: "Agric and tural" }, correctAnswer: "B" },
 
@@ -1384,7 +1262,7 @@
             };
             
             // Check for existing progress
-            const savedProgress = localStorage.getItem(`skynet_cbt_${id}`);
+            const savedProgress = localStorage.getItem(`zenith_cbt_${id}`);
             if (savedProgress) {
                 const progress = JSON.parse(savedProgress);
                 examData.completedSubjects = progress.completedSubjects || [];
@@ -1735,7 +1613,7 @@
             currentSubjectElement.textContent = currentSubject;
             
             // Set time limit based on subject
-            examData.timeLimit = currentSubject === "Mathematics" ? 45 * 60 : 30 * 60;
+            examData.timeLimit = currentSubject === "Mathematics" ? 80 * 60 : 50 * 60;
             
             dashboardScreen.classList.add('hidden');
             examScreen.classList.remove('hidden');
@@ -1956,7 +1834,7 @@
                 studentData: studentData,
                 timestamp: new Date().toISOString()
             };
-            localStorage.setItem(`skynet_cbt_${studentData.id}`, JSON.stringify(progressData));
+            localStorage.setItem(`zenith_cbt_${studentData.id}`, JSON.stringify(progressData));
         }
 
         function showContinueScreen(subjectName) {
@@ -2081,7 +1959,7 @@
             }
             
             // Clear progress after completion
-            localStorage.removeItem(`skynet_cbt_${studentData.id}`);
+            localStorage.removeItem(`zenith_cbt_${studentData.id}`);
         }
 
         function printResult() {
